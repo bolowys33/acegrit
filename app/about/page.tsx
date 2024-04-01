@@ -12,7 +12,7 @@ const About = () => {
             <PageBanner title="About Us" />
             <Container maxWidth="xl">
                 <div className="px-5">
-                    <SectionTitle section="about us" />
+                    <SectionTitle section="about us" classes="" />
                     <div className="font-poppins text-justify font-medium text-zinc-700">
                         <div className="flex flex-col md:flex-row justify-between gap-8 mb-5">
                             <div className="flex-1 space-y-5">
@@ -122,8 +122,8 @@ const About = () => {
                     </div>
                     <MissionBanner />
                 </div>
-                <Expertise />
             </Container>
+                <Expertise />
         </div>
     );
 };
