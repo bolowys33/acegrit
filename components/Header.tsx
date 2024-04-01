@@ -65,11 +65,11 @@ const Header = () => {
                                 <div
                                     onMouseEnter={handleShowArea}
                                     onMouseLeave={handleCloseArea}
-                                    className="absolute mt-2 px-6 py-2 bg-white w-[200px] text-navy">
+                                    className="absolute mt-2 px-6 py-2 bg-white  text-navy">
                                     <ul className="space-y-5">
                                         {practiceAreas.map((area) => (
                                             <li key={area.path}>
-                                                <Link href={area.path} className="link">
+                                                <Link href={`/practice-areas${area.path}`} className="link">
                                                     {area.name}
                                                 </Link>
                                             </li>
