@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,13 +19,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Poppins", sans-serif;
 }
 
 @layer utilities {
@@ -31,3 +27,32 @@ body {
     text-wrap: balance;
   }
 }
+
+.link {
+  padding: 0.5rem;
+  position: relative; /* Add relative positioning */
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; /* Initially no width */
+  height: 1px;
+  background-color: #000080; /* Change color as needed */
+  transition: width 0.3s ease; /* Transition effect */
+}
+
+.link:hover::after {
+  width: 100%; /* Expand width on hover */
+}
+
+.bg-image {
+  background-image: url("../public/assets/main.jpg");
+}
+
+.mission-image {
+  background-image: url('../public/assets/mission.jpg');
+}
+
