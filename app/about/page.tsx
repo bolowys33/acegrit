@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import Image from "next/image";
 import logo from "@/public/assets/logo.png";
 import MissionBanner from "@/components/MissionBanner";
+import Expertise from "@/components/Expertise";
 
 const About = () => {
     return (
@@ -15,7 +16,7 @@ const About = () => {
                     <div className="font-poppins text-justify font-medium text-zinc-700">
                         <div className="flex flex-col md:flex-row justify-between gap-8 mb-5">
                             <div className="flex-1 space-y-5">
-                                <h3 className="text-[29px] md:text-[34px] text-start font-bold font-poppings">
+                                <h3 className="text-[29px] md:text-[34px] text-start font-extrabold ">
                                     Ace & Grit Legal Practitioners
                                 </h3>
                                 <p>
@@ -121,6 +122,7 @@ const About = () => {
                     </div>
                     <MissionBanner />
                 </div>
+                <Expertise />
             </Container>
         </div>
     );
