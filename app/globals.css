@@ -48,8 +48,12 @@ body {
   width: 100%; /* Expand width on hover */
 }
 
-.bg-image {
+.about-image {
   background-image: url("../public/assets/main.jpg");
+}
+
+.contact-image {
+  background-image: url('../public/assets/contact.jpg');
 }
 
 .mission-image {

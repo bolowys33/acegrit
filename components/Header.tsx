@@ -90,7 +90,7 @@ const Header = () => {
                         <li>
                             <Button
                                 title="request an appointment"
-                                classes="ml-6 lg:ml-10"
+                                classes="ml-6 text-[14px]"
                             />
                         </li>
                     </ul>

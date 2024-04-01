@@ -9,7 +9,7 @@ import Expertise from "@/components/Expertise";
 const About = () => {
     return (
         <div>
-            <PageBanner title="About Us" />
+            <PageBanner title="About Us" classes="about-image" />
             <Container maxWidth="xl">
                 <div className="px-5">
                     <SectionTitle section="about us" classes="" />

@@ -11,7 +11,7 @@ export const links: NavLink[] = [
 export const links2: NavLink[] = [
     { name: "Attorneys", path: "/attorneys" },
     { name: "Legal Blog", path: "/legal-blog" },
-    { name: "Contact", path: "/contact" },
+    { name: "Contact", path: "/contact-us" },
 ];
 
 export const practiceAreas: NavLink[] = [
