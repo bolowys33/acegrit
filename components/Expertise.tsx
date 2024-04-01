@@ -10,6 +10,9 @@ const Expertise = () => {
                 </h3>
                 <span className="text-2xl text-[#222261]">|</span>
             </div>
+            <div>
+                
+            </div>
         </div>
     );
 };
