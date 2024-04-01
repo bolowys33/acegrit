@@ -52,6 +52,10 @@ body {
   background-image: url("../public/assets/main.jpg");
 }
 
+.contact-image {
+  background-image: url('../public/assets/contact.jpg');
+}
+
 .mission-image {
   background-image: url('../public/assets/mission.jpg');
 }
