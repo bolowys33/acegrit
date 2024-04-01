@@ -11,9 +11,7 @@ const MissionBanner = () => {
                     OUR MISSION
                 </h1>
                 <p className="tracking-[1px] leading-[34px]">
-                    Our mission is to meet the needs of our clients and our goal
-                    is to provide quality legal representation on a cost
-                    effective basis.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt eos voluptas eligendi aliquam. Nobis libero deleniti explicabo quam, quaerat in adipisci maxime possimus vitae natus suscipit. Est quibusdam ipsa quo?
                 </p>
             </div>
         </div>
