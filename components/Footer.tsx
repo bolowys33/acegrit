@@ -1,4 +1,4 @@
-import { links } from "@/constants/links";
+import { links, practiceAreas } from "@/constants/links";
 import logo from "@/public/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const Footer = () => {
                                 Practice Areas
                             </h2>
                             <ul>
-                                {links.map((link) => (
+                                {practiceAreas.map((link) => (
                                     <li key={link.path}>
                                         <Link href={link.path}>
                                             {link.name}
