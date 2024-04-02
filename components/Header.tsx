@@ -81,7 +81,7 @@ const Header = () => {
                                             <li key={area.path}>
                                                 <Link
                                                     href={`/practice-areas${area.path}`}
-                                                    className="link">
+                                                    className={`link text-navy hover:border-b hover:border-navy ${pathname === `/practice-areas${area.path}` ? "border-b-2 border-navy" : ''}`}>
                                                     {area.name}
                                                 </Link>
                                             </li>
