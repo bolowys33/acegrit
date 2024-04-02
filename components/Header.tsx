@@ -15,9 +15,8 @@ import { useState } from "react";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 
-
 const Header = () => {
-    const pathname = usePathname()
+    const pathname = usePathname();
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const [areaOpen, setAreaOpen] = useState<boolean>(false);
@@ -51,7 +50,11 @@ const Header = () => {
                             <li key={link.path}>
                                 <Link
                                     href={link.path}
-                                    className={`link text-navy hover:border-b hover:border-navy ${pathname === link.path ? "border-b-2 border-navy" : ''}`}>
+                                    className={`link text-navy hover:border-b hover:border-navy ${
+                                        pathname === link.path
+                                            ? "border-b-2 border-navy"
+                                            : ""
+                                    }`}>
                                     {link.name}
                                 </Link>
                             </li>
@@ -61,7 +64,11 @@ const Header = () => {
                                 onMouseEnter={handleShowArea}
                                 onMouseLeave={handleCloseArea}
                                 href={"/practic-areas"}
-                                className={`link text-navy hover:border-b hover:border-navy ${pathname === '/practice-areas' ? "border-b-2 border-navy" : ''}`}>
+                                className={`link text-navy hover:border-b hover:border-navy ${
+                                    pathname === "/practice-areas"
+                                        ? "border-b-2 border-navy"
+                                        : ""
+                                }`}>
                                 Practice Areas <KeyboardArrowDown />
                             </Link>
                             {showArea && (
@@ -72,7 +79,9 @@ const Header = () => {
                                     <ul className="space-y-5">
                                         {practiceAreas.map((area) => (
                                             <li key={area.path}>
-                                                <Link href={`/practice-areas${area.path}`} className="link">
+                                                <Link
+                                                    href={`/practice-areas${area.path}`}
+                                                    className="link">
                                                     {area.name}
                                                 </Link>
                                             </li>
@@ -85,7 +94,11 @@ const Header = () => {
                             <li key={link.path}>
                                 <Link
                                     href={link.path}
-                                    className={`link text-navy hover:border-b hover:border-navy ${pathname === link.path ? "border-b-2 border-navy" : ''}`}>
+                                    className={`link text-navy hover:border-b hover:border-navy ${
+                                        pathname === link.path
+                                            ? "border-b-2 border-navy"
+                                            : ""
+                                    }`}>
                                     {link.name}
                                 </Link>
                             </li>
