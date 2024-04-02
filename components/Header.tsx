@@ -13,9 +13,12 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import Button from "./Button";
+import { usePathname } from "next/navigation";
 
 
 const Header = () => {
+    const pathname = usePathname()
+
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const [areaOpen, setAreaOpen] = useState<boolean>(false);
     const [showArea, setShowArea] = useState<boolean>(false);
