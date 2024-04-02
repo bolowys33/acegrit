@@ -51,7 +51,7 @@ const Header = () => {
                             <li key={link.path}>
                                 <Link
                                     href={link.path}
-                                    className="link text-navy hover:border-b hover:border-navy ">
+                                    className={`link text-navy hover:border-b hover:border-navy ${pathname === link.path ? "border-b-2 border-navy" : ''}`}>
                                     {link.name}
                                 </Link>
                             </li>
@@ -61,7 +61,7 @@ const Header = () => {
                                 onMouseEnter={handleShowArea}
                                 onMouseLeave={handleCloseArea}
                                 href={"/practic-areas"}
-                                className="link relative text-navy hover:border-b hover:border-navy">
+                                className={`link text-navy hover:border-b hover:border-navy ${pathname === '/practice-areas' ? "border-b-2 border-navy" : ''}`}>
                                 Practice Areas <KeyboardArrowDown />
                             </Link>
                             {showArea && (
@@ -85,7 +85,7 @@ const Header = () => {
                             <li key={link.path}>
                                 <Link
                                     href={link.path}
-                                    className="link text-navy hover:border-b hover:border-navy ">
+                                    className={`link text-navy hover:border-b hover:border-navy ${pathname === link.path ? "border-b-2 border-navy" : ''}`}>
                                     {link.name}
                                 </Link>
                             </li>
