@@ -1,4 +1,5 @@
 import PageBanner from "@/components/PageBanner";
+import Social from "@/components/Social";
 import { AccessTimeOutlined, LocationOnOutlined, PermPhoneMsgOutlined } from "@mui/icons-material";
 import { Container } from "@mui/material";
 
@@ -31,9 +32,8 @@ const Contact = () => {
                                 <p>Email: email@email.com</p>
                             </span>
                         </div>
-                        
                     </div>
-                    <div></div>
+                    <Social />
                 </div>
             </Container>
             <form action=""></form>
