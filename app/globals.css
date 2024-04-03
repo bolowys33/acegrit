@@ -56,6 +56,10 @@ body {
   background-image: url('../public/assets/contact.jpg');
 }
 
+.blog-image {
+  background-image: url('../public/assets/blog.jpg');
+}
+
 .mission-image {
   background-image: url('../public/assets/mission.jpg');
 }
