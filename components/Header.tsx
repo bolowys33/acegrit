@@ -63,7 +63,7 @@ const Header = () => {
                             <Link
                                 onMouseEnter={handleShowArea}
                                 onMouseLeave={handleCloseArea}
-                                href={"/practic-areas"}
+                                href={"/practice-areas"}
                                 className={`link text-navy hover:border-b hover:border-navy ${
                                     pathname === "/practice-areas"
                                         ? "border-b-2 border-navy"
