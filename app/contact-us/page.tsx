@@ -49,7 +49,7 @@ const Contact = () => {
                         <h3 className="text-[40px] text-center font-extrabold mb-1">
                             Leave us a message
                         </h3>
-                        <p className="mb-3 text-center text-zinc-700 text-xl font-poppings tracking-wide">
+                        <p className="mb-6 text-center text-zinc-600 text-xl font-poppings tracking-wide">
                             and we will get back to you
                         </p>
                         <form action="">
@@ -92,7 +92,7 @@ const Contact = () => {
                                 required
                                 id="outlined-basic"
                                 placeholder="Your message *"
-                                className="w-full p-3 outline-blue-600 mb-6 border border-zinc-400 rounded hover:border-black placeholder:text-zinc-500"
+                                className="w-full p-3 outline-blue-600 mb-6 border border-zinc-300 rounded hover:border-black placeholder:text-zinc-500"
                             />
                             <Button type="submit" title="submit now" classes="w-full h-14" />
                         </form>
