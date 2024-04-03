@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import PageBanner from "@/components/PageBanner";
 import Social from "@/components/Social";
 import {
@@ -42,13 +43,27 @@ const Contact = () => {
                     <Social />
                 </div>
             </Container>
-            <div className="bg-zinc-200">
+            <div className="bg-zinc-200 py-14">
                 <Container maxWidth="sm">
                     <Box>
-                    <h3 className="text-[40px] text-center font-extrabold mb-3">
-                        Leave us a message
-                    </h3>
+                        <h3 className="text-[40px] text-center font-extrabold mb-1">
+                            Leave us a message
+                        </h3>
+                        <p className="mb-3 text-center text-zinc-700 text-xl font-poppings tracking-wide">
+                            and we will get back to you
+                        </p>
                         <form action="">
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="outlined-basic"
+                                label="Full Name"
+                                type="text"
+                                autoFocus={false}
+                                className="mb-4 text-gray-700 rounded bg-white"
+                            />
                             <TextField
                                 variant="outlined"
                                 margin="normal"
@@ -66,19 +81,20 @@ const Contact = () => {
                                 required
                                 fullWidth
                                 id="outlined-basic"
-                                label="Full Name"
+                                label="Subject"
                                 type="text"
                                 autoFocus={false}
-                                className="mb-4 text-gray-700 rounded bg-white outline-none"
+                                className="mb-8 text-gray-700 rounded bg-white"
                             />
                             <TextareaAutosize
                                 minRows={7}
                                 maxRows={9}
                                 required
                                 id="outlined-basic"
-                                placeholder="Your message"
-                                className="w-full"
+                                placeholder="Your message *"
+                                className="w-full p-3 outline-blue-600 mb-6 border border-zinc-400 rounded hover:border-black placeholder:text-zinc-500"
                             />
+                            <Button type="submit" title="submit now" classes="w-full h-14" />
                         </form>
                     </Box>
                 </Container>
