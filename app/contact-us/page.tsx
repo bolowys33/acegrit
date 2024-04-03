@@ -42,9 +42,12 @@ const Contact = () => {
                     <Social />
                 </div>
             </Container>
-            <div className="bg-gray">
+            <div className="bg-zinc-200">
                 <Container maxWidth="sm">
                     <Box>
+                    <h3 className="text-[40px] text-center font-extrabold mb-3">
+                        Leave us a message
+                    </h3>
                         <form action="">
                             <TextField
                                 variant="outlined"
