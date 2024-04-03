@@ -11,7 +11,7 @@ const About = () => {
         <div>
             <PageBanner title="About Us" classes="about-image" />
             <Container maxWidth="xl">
-                <div className="px-5">
+                <div className="md:px-5">
                     <SectionTitle section="about us" classes="" />
                     <div className="font-poppins text-justify font-medium text-zinc-700">
                         <div className="flex flex-col md:flex-row justify-between gap-8 mb-5">
