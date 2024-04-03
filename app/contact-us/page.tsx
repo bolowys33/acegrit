@@ -40,7 +40,7 @@ const Contact = () => {
                             </span>
                         </div>
                     </div>
-                    <Social />
+                    <Social classes="" />
                 </div>
             </Container>
             <div className="bg-zinc-200 py-14">
