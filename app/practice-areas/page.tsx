@@ -14,10 +14,10 @@ const PracticeAreas = () => {
     const images = [litigation, probate, commercial, conflict];
 
     return (
-        <div className="mb-8">
+        <div>
             <PageBanner title="Practice Areas" classes="area-image" />
             <Container maxWidth="xl">
-                <div className="md:px-5">
+                <div className="md:px-5 mb-6">
                     <SectionTitle
                         section="practice areas"
                         classes="text-center"
@@ -45,7 +45,7 @@ const PracticeAreas = () => {
                                     <Link
                                         href={area.path}
                                         className="transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
-                                        read more
+                                        learn more
                                     </Link>
                                 </div>
                             </article>
