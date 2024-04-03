@@ -31,7 +31,7 @@ const PracticeAreas = () => {
                                 key={area.path}
                                 className="flex flex-col md:flex-row md:pt-10 justify-between gap-8">
                                 <div className="flex-1">
-                                    <Image src={images[index]} alt="" />
+                                    <Image src={images[index]} alt="" priority />
                                 </div>
                                 <div className="flex-1 lg:py-10">
                                     <h5 className="text-[24px] md:text-[30px] text-start font-extrabold">
