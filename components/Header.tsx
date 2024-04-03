@@ -63,7 +63,7 @@ const Header = () => {
                             <Link
                                 onMouseEnter={handleShowArea}
                                 onMouseLeave={handleCloseArea}
-                                href={"/practic-areas"}
+                                href={"/practice-areas"}
                                 className={`link text-navy hover:border-b hover:border-navy ${
                                     pathname === "/practice-areas"
                                         ? "border-b-2 border-navy"
@@ -145,7 +145,7 @@ const Header = () => {
                         <li>
                             <div className="w-[full] text-navy border-t bg-white border-gray px-10 py-3 flex justify-between">
                                 <Link
-                                    href={"/practic-areas"}
+                                    href={"/practice-areas"}
                                     onClick={handleMenu}
                                     className="py-2 ">
                                     Practice Areas

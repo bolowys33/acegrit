@@ -1,11 +1,12 @@
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
+import Social from "@/components/Social";
 import { Container } from "@mui/material";
 import Link from "next/link";
 
 const Blog = () => {
     return (
-        <div className="mb-6">
+        <div className="">
             <PageBanner title="Legal Blog" classes="blog-image" />
             <Container maxWidth="xl">
                 <div className="md:px-5">
@@ -19,7 +20,7 @@ const Blog = () => {
                         events within the legal space in Africa.
                     </p>
                     <SectionTitle section="posts" classes="mb-6" />
-                    <section className="space-y-16">
+                    <section className="space-y-16 mb-10">
                     <article>
                         <div className="flex">
                             <div className="py-0 pr-4 border-r-2 h-14 border-navy tracking-[2px] hidden md:block">
@@ -170,6 +171,7 @@ const Blog = () => {
                     </section>
                 </div>
             </Container>
+            <Social classes="bg-zinc-200" />
         </div>
     );
 };
