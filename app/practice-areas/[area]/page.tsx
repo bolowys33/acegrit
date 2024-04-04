@@ -9,13 +9,10 @@ const Area = ({ params }: { params: Areas }) => {
     const { area } = params;
  
     const link = practiceAreas.find(item => item.path === `/${area}`)
-    console.log(area);
-    
-    
 
     return (
         <div>
-            <PageBanner title={link?.name} classes="" />
+            <PageBanner title={link?.name} classes={`${area}-image`} />
         </div>
     );
 };
