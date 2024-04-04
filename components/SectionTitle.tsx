@@ -2,7 +2,7 @@ import { FC } from "react";
 
 interface SectionTitleProps {
     section: string;
-    classes: string
+    classes?: string
 }
 
 const SectionTitle: FC<SectionTitleProps> = ({ section, classes }) => {
