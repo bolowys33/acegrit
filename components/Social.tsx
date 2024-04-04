@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface SocialProps {
-    classes: string;
+    classes?: string;
 }
 
 const Social: FC<SocialProps> = ({ classes }) => {

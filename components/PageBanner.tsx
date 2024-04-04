@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 interface PageBannerProps {
-    title: string;
+    title?: string;
     classes: string;
 }
 

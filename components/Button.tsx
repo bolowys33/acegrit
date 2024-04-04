@@ -2,7 +2,7 @@ import React from "react";
 
 interface ButtonProps {
     title: string;
-    classes: string;
+    classes?: string;
     type: "submit" | "reset" | "button" | undefined;
 }
 
