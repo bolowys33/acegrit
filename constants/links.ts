@@ -15,7 +15,7 @@ export const links2: NavLink[] = [
 ];
 
 export const practiceAreas: NavLink[] = [
-    { name: "Litigation", path: "/litigatiton" },
+    { name: "Litigation", path: "/litigation" },
     { name: "Probate Practice", path: "/probate-practice" },
     { name: "Commercial & Corporate Practice", path: "/commercial-coorparate" },
     { name: "Dispute Resolution", path: "/dispute-resolution" },
