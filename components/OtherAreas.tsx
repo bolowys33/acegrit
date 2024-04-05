@@ -25,11 +25,8 @@ const OtherAreas: FC<OtherAreasProps> = ({ area }) => {
 
     return (
         <div className="">
-            <div className="text-center mb-6">
-                <SectionTitle section="practice areas" />
-                <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
-                    Other Practice Areas
-                </h3>
+            <div className="text-center my-6">
+                <SectionTitle section=" other practice areas" />
                 <span className="text-2xl text-[#222261]">|</span>
             </div>
             <div className="flex flex-col md:flex-row  gap-4 p-10 bg-zinc-200">
