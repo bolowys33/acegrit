@@ -34,7 +34,7 @@ const OtherAreas: FC<OtherAreasProps> = ({ area }) => {
                     <div
                         key={area.path}
                         className="bg-white shadow-lg rounded-md p-3 col-span-full md:col-span-6 lg:col-span-3">
-                        <Link href={area.path} className="relative">
+                        <Link href={`/practice-areas${area.path}`} className="relative">
                             <Image
                                 src={images[index]}
                                 alt="area.name"

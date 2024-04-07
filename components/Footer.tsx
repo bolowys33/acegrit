@@ -32,7 +32,7 @@ const Footer = () => {
                             <ul>
                                 {practiceAreas.map((link) => (
                                     <li key={link.path}>
-                                        <Link href={link.path}>
+                                        <Link href={`/practice-areas${link.path}`}>
                                             {link.name}
                                         </Link>
                                     </li>
