@@ -45,7 +45,7 @@ const Header = () => {
                     <div>
                         <Image src={logo} alt="brand logo" width={100} />
                     </div>
-                    <ul className="lg:space-x-1 xl:space-x-4 hidden lg:flex items-center text-[16.5px] ">
+                    <ul className="lg:space-x-1 xl:space-x-4 hidden lg:flex items-center text-[16.5px]">
                         {links.map((link) => (
                             <li key={link.path}>
                                 <Link
