@@ -6,8 +6,7 @@ const Blog = () => {
     return ( 
         <div>
             <Container maxWidth="xl">
-                <div className="md:px-5">
-                    
+                <div className="mt-8 md:pl-16 md:w-[80%]">
                     <h3 className="text-[29px] md:text-[34px] text-start font-extrabold tracking-[1.5px]">
                         Publications
                     </h3>
