@@ -27,7 +27,7 @@ const Blog = () => {
                                 <div className="md:pl-4">
                                     <Link
                                         href={"#"}
-                                        className="text-[32px] md:text-[37px] text-start font-extrabold tracking-[1.5px] leading-[44px] hover:text-navy">
+                                        className="text-[24px] md:text-[28px] text-start font-extrabold hover:text-navy">
                                         Immovable Assets as Securities; The New
                                         Era
                                     </Link>
@@ -55,7 +55,7 @@ const Blog = () => {
                                 <div className="md:pl-4">
                                     <Link
                                         href={"#"}
-                                        className="text-[32px] md:text-[37px] text-start font-extrabold tracking-[1.5px] leading-[44px] hover:text-navy">
+                                        className="text-[24px] md:text-[28px] text-start font-extrabold hover:text-navy">
                                         Immovable Assets as Securities; The New
                                         Era
                                     </Link>
@@ -83,7 +83,7 @@ const Blog = () => {
                                 <div className="md:pl-4">
                                     <Link
                                         href={"#"}
-                                        className="text-[32px] md:text-[37px] text-start font-extrabold tracking-[1.5px] leading-[44px] hover:text-navy">
+                                        className="text-[24px] md:text-[28px] text-start font-extrabold hover:text-navy">
                                         Immovable Assets as Securities; The New
                                         Era
                                     </Link>
