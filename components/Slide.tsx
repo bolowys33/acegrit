@@ -8,8 +8,8 @@ interface SlideProps {
 
 const Slide: FC<SlideProps> = ({ title, classes, children }) => {
     return (
-        <div className={`md:h-[80vh] bg-cover bg-center text-center text-white ${classes}`}>
-            <div className="bg-black bg-opacity-50 hover:bg-opacity-70 pt-[70px] pb-[50px] md:py-[100px] h-full">
+        <div className={`h-[350px] md:h-[80vh] bg-cover bg-center text-center text-white ${classes}`}>
+            <div className="bg-black bg-opacity-50 hover:bg-opacity-70 pt-[40px] pb-[50px] md:py-[100px] h-full">
                 <h1 className="font-main font-bold text-4xl md:text-[75px]">
                     {title}
                 </h1>

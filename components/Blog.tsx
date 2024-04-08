@@ -6,7 +6,7 @@ const Blog = () => {
     return (
         <div>
             <Container maxWidth="xl">
-                <div className="my-8 md:pl-20 md:w-[85%] flex flex-col">
+                <div className="my-8 md:mx-auto md:w-[85%] flex flex-col">
                     <h3 className="text-[29px] md:text-[34px] text-start font-extrabold tracking-[1.5px]">
                         Publications
                     </h3>

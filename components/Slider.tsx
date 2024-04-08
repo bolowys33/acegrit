@@ -26,7 +26,7 @@ const Slider = () => {
                 modules={[Pagination, Navigation, Autoplay]}>
                 <SwiperSlide>
                     <Slide title="Ace & Grit LP" classes="litigation-image">
-                        <p className="mb-10 mx-4 md:mx-24 md:text-xl">
+                        <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
                             Welcome to Ace & Grit Legal Practictioners, where we
                             are dedicated to providing exceptional legal
                             services to our clients. Our team of experienced
@@ -43,7 +43,7 @@ const Slider = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide title="Expertise" classes="litigation-image">
-                        <p className="mb-10 mx-4 md:mx-24 md:text-xl">
+                        <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
                             At Ace & Grit LP, whether you are facing a complex
                             business dispute, navigating the nuances of estate
                             planning, or seeking guidance on a personal legal
@@ -60,7 +60,7 @@ const Slider = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide title="Our Blog" classes="litigation-image">
-                        <p className="mb-10 mx-4 md:mx-24 md:text-xl">
+                        <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
                             Stay informed and empowered with our latest
                             articles, insights, and legal tips. Whether you're a
                             business owner, individual, or legal professional,
@@ -79,7 +79,7 @@ const Slider = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide title="Get in Touch" classes="litigation-image">
-                        <p className="mb-10 mx-4 md:mx-24 md:text-xl">
+                        <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
                             Ready to discuss your legal needs? Contact us today
                             to schedule a consultation. Our team is here to
                             listen, advise, and guide you through the legal
