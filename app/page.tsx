@@ -6,7 +6,7 @@ const Home = () => {
     return <div>
         <Slider />
         <Expertise />
-        <Social classes="bg-zinc-200" />
+        <Social />
     </div>;
 };
 
