@@ -3,10 +3,10 @@ import SectionTitle from "./SectionTitle";
 import Link from "next/link";
 
 const Blog = () => {
-    return ( 
+    return (
         <div>
             <Container maxWidth="xl">
-                <div className="mt-8 md:pl-16 md:w-[80%]">
+                <div className="my-8 md:pl-20 md:w-[85%] flex flex-col">
                     <h3 className="text-[29px] md:text-[34px] text-start font-extrabold tracking-[1.5px]">
                         Publications
                     </h3>
@@ -102,15 +102,14 @@ const Blog = () => {
                         </article>
                     </section>
                     <Link
-                                href={"#"}
-                                className="transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
-                                view all
-                            </Link>
+                        href={"/legal-blog"}
+                        className="self-center text-[20px] transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
+                        view all
+                    </Link>
                 </div>
             </Container>
-            
         </div>
-     );
-}
- 
+    );
+};
+
 export default Blog;
