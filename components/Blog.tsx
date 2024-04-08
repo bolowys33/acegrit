@@ -7,16 +7,15 @@ const Blog = () => {
         <div>
             <Container maxWidth="xl">
                 <div className="md:px-5">
-                    <SectionTitle section="Publications"/>
+                    
                     <h3 className="text-[29px] md:text-[34px] text-start font-extrabold tracking-[1.5px]">
-                        From the Desk
+                        Publications
                     </h3>
                     <p className="tracking-[.5px] font-[500] text-zinc-400 my-6">
                         Our articles from the desk, aim to keep you updated with
                         current legislations, policies, pronouncements and
                         events within the legal space in Africa.
                     </p>
-                    <SectionTitle section="posts" classes="mb-6" />
                     <section className="space-y-16 mb-10">
                         <article>
                             <div className="flex">
