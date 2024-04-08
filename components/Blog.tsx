@@ -101,6 +101,11 @@ const Blog = () => {
                             </Link>
                         </article>
                     </section>
+                    <Link
+                                href={"#"}
+                                className="transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
+                                view all
+                            </Link>
                 </div>
             </Container>
             
