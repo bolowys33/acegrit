@@ -3,20 +3,18 @@ import SectionTitle from "./SectionTitle";
 import Link from "next/link";
 
 const Blog = () => {
-    return ( 
+    return (
         <div>
             <Container maxWidth="xl">
-                <div className="md:px-5">
-                    <SectionTitle section="Publications"/>
+                <div className="my-8 md:pl-20 md:w-[85%] flex flex-col">
                     <h3 className="text-[29px] md:text-[34px] text-start font-extrabold tracking-[1.5px]">
-                        From the Desk
+                        Publications
                     </h3>
                     <p className="tracking-[.5px] font-[500] text-zinc-400 my-6">
                         Our articles from the desk, aim to keep you updated with
                         current legislations, policies, pronouncements and
                         events within the legal space in Africa.
                     </p>
-                    <SectionTitle section="posts" classes="mb-6" />
                     <section className="space-y-16 mb-10">
                         <article>
                             <div className="flex">
@@ -103,11 +101,15 @@ const Blog = () => {
                             </Link>
                         </article>
                     </section>
+                    <Link
+                        href={"/legal-blog"}
+                        className="self-center text-[20px] transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
+                        view all
+                    </Link>
                 </div>
             </Container>
-            
         </div>
-     );
-}
- 
+    );
+};
+
 export default Blog;
