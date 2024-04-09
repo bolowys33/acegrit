@@ -8,23 +8,23 @@ const Attorneys = () => {
     return (
         <div>
             <PageBanner title="Attorneys" classes="people-image" />
-            <Container>
-                <div className="mx-auto text-center">
+            <Container maxWidth="md">
+                <div className="text-center">
                     <SectionTitle section="Our team" />
                     <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
                         Meet our team
                     </h3>
                 </div>
                 <div className="text-center">
-                    <Image src={litigation} alt="" className="w-[700px] mx-auto" />
-                    <h3 className="text-[26px] md:text-[30px] font-extrabold mt-2">
+                    <Image src={litigation} alt="" className="w-[700px] mx-auto mb-5" />
+                    <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
                         Babajide Bolodeoku
                     </h3>
                     <SectionTitle section="managing partner" />
                 </div>
                 <div className="text-center">
-                    <Image src={litigation} alt="" className="w-[700px] mx-auto" />
-                    <h3 className="text-[26px] md:text-[30px] font-extrabold mt-2">
+                    <Image src={litigation} alt="" className="w-[700px] mx-auto mb-5" />
+                    <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
                         Olalekan Adeoye
                     </h3>
                     <SectionTitle section="managing partner" />
