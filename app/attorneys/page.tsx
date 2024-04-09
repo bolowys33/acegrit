@@ -17,7 +17,16 @@ const Attorneys = () => {
                 </div>
                 <div>
                     <Image src={litigation} alt="" className="w-[700px]" />
-                    <SectionTitle section="Bolodeoku babajide" />
+                    <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
+                        Babajide Bolodeoku
+                    </h3>
+                    <SectionTitle section="managing partner" />
+                </div>
+                <div>
+                    <Image src={litigation} alt="" className="w-[700px]" />
+                    <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
+                        Olalekan Adeoye
+                    </h3>
                     <SectionTitle section="managing partner" />
                 </div>
             </Container>
