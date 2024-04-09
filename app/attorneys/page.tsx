@@ -10,7 +10,7 @@ const Attorneys = () => {
         <div>
             <PageBanner title="Attorneys" classes="people-image" />
             <Container maxWidth="lg">
-                <div className="text-center">
+                <div className="text-center mb-8">
                     <SectionTitle section="Our team" />
                     <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
                         Meet our team
