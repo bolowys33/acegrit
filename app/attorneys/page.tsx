@@ -15,14 +15,14 @@ const Attorneys = () => {
                         Meet our team
                     </h3>
                 </div>
-                <div>
+                <div className="text-center">
                     <Image src={litigation} alt="" className="w-[700px]" />
                     <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
                         Babajide Bolodeoku
                     </h3>
                     <SectionTitle section="managing partner" />
                 </div>
-                <div>
+                <div className="text-center">
                     <Image src={litigation} alt="" className="w-[700px]" />
                     <h3 className="text-[29px] md:text-[34px] font-extrabold mb-3">
                         Olalekan Adeoye
