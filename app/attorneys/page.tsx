@@ -3,6 +3,7 @@ import SectionTitle from "@/components/SectionTitle";
 import { Container } from "@mui/material";
 import Image from "next/image";
 import litigation from "@/public/assets/litigation.jpg"
+import Social from "@/components/Social";
 
 const Attorneys = () => {
     return (
@@ -15,21 +16,24 @@ const Attorneys = () => {
                         Meet our team
                     </h3>
                 </div>
-                <div className="text-center">
+               <div>
+               <div className="text-center mb-6">
                     <Image src={litigation} alt="" className="w-[700px] mx-auto mb-5" />
                     <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
                         Babajide Bolodeoku
                     </h3>
                     <SectionTitle section="managing partner" />
                 </div>
-                <div className="text-center">
+                <div className="text-center mb-6">
                     <Image src={litigation} alt="" className="w-[700px] mx-auto mb-5" />
                     <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
                         Olalekan Adeoye
                     </h3>
                     <SectionTitle section="managing partner" />
                 </div>
+               </div>
             </Container>
+            <Social classes="bg-zinc-200" />
         </div>
     );
 };
