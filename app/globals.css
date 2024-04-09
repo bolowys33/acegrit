@@ -48,6 +48,10 @@ body {
     width: 100%; /* Expand width on hover */
 }
 
+.people-image {
+    background-image: url("../public/assets/people.jpg");
+}
+
 .about-image {
     background-image: url("../public/assets/main.jpg");
 }
