@@ -81,7 +81,12 @@ const Header = () => {
                                             <li key={area.path}>
                                                 <Link
                                                     href={`/practice-areas${area.path}`}
-                                                    className={`link text-navy hover:border-b hover:border-navy ${pathname === `/practice-areas${area.path}` ? "border-b-2 border-navy" : ''}`}>
+                                                    className={`link text-navy hover:border-b hover:border-navy ${
+                                                        pathname ===
+                                                        `/practice-areas${area.path}`
+                                                            ? "border-b-2 border-navy"
+                                                            : ""
+                                                    }`}>
                                                     {area.name}
                                                 </Link>
                                             </li>
@@ -104,11 +109,11 @@ const Header = () => {
                             </li>
                         ))}
                         <li>
-                            <Button
-                                title="request an appointment"
-                                classes="ml-6 text-[14px]"
-                                type="button"
-                            />
+                            <Link
+                                href={"/contact-us"}
+                                className="transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase ml-6 text-[14px]">
+                                request an appointment
+                            </Link>
                         </li>
                     </ul>
                     <button
