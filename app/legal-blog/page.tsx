@@ -31,7 +31,7 @@ const Blog = () => {
                                 </div>
                                 <div className="md:pl-4">
                                     <Link
-                                        href={"#"}
+                                        href={"/desc"}
                                         className="text-[32px] md:text-[37px] text-start font-extrabold tracking-[1.5px] leading-[44px] hover:text-navy">
                                         Immovable Assets as Securities; The New
                                         Era
@@ -44,7 +44,7 @@ const Blog = () => {
                                 pronouncements and events...
                             </p>
                             <Link
-                                href={"#"}
+                                href={"/desc"}
                                 className="transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
                                 read more
                             </Link>
