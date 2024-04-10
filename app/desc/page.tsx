@@ -28,10 +28,12 @@ const BlogContent = () => {
                     deleniti laborum recusandae repellendus. Iusto maiores
                     voluptates iste!
                 </p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                repellat eum dolorum nostrum neque vitae nisi quasi mollitia
-                nihil recusandae temporibus autem delectus cum modi, blanditiis,
-                officiis maiores alias ipsa?
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quia repellat eum dolorum nostrum neque vitae nisi quasi
+                    mollitia nihil recusandae temporibus autem delectus cum
+                    modi, blanditiis, officiis maiores alias ipsa?
+                </p>
             </Container>
         </div>
     );
