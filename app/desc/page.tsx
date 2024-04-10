@@ -10,7 +10,7 @@ const BlogContent = () => {
                     </h1>
                 </div>
             </div>
-            <Container>
+            <Container maxWidth="md" className="space-y-4 text-justify">
                 <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Nisi exercitationem aperiam vel ea corrupti quidem eum ad
