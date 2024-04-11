@@ -19,7 +19,7 @@ const Expertise = () => {
                 </h3>
                 <span className="text-2xl text-[#222261]">|</span>
             </div>
-            <div className="grid grid-cols-12 gap-4 p-10 bg-zinc-200">
+            <div className="flex gap-4 p-10 bg-zinc-200">
                 {practiceAreas.map((area, index) => (
                     <div key={area.path} className="bg-white shadow-lg rounded-md p-3 col-span-full md:col-span-6 lg:col-span-3">
                         <Link href={`/practice-areas${area.path}`} className="relative">
