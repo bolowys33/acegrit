@@ -68,12 +68,16 @@ body {
     background-image: url("../public/assets/areas.jpg");
 }
 
-.litigation-image {
+.general-litigation-image {
     background-image: url("../public/assets/litigation.jpg");
 }
 
-.probate-practice-image {
+.probate-and-wills-image {
     background-image: url("../public/assets/probate.jpg");
+}
+
+.commercial-coorparate-image {
+    background-image: url("../public/assets/commercial.jpg");
 }
 
 .commercial-coorparate-image {
