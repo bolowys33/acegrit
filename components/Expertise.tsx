@@ -8,7 +8,7 @@ import probate from "@/public/assets/probate.jpg";
 import Image from "next/image";
 
 const Expertise = () => {
-    const images = [litigation, probate, commercial, conflict];
+    const images = [litigation, probate, commercial, conflict, conflict];
 
     return (
         <div className="">
