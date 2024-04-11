@@ -11,7 +11,7 @@ import { practiceAreas } from "@/constants/links";
 import Social from "@/components/Social";
 
 const PracticeAreas = () => {
-    const images = [litigation, probate, commercial, conflict];
+    const images = [litigation, probate, commercial, conflict, conflict];
 
     return (
         <div>
