@@ -4,11 +4,12 @@ import SectionTitle from "./SectionTitle";
 import commercial from "@/public/assets/commercial.jpg";
 import litigation from "@/public/assets/litigation.jpg";
 import conflict from "@/public/assets/conflict.jpg";
+import company from "@/public/assets/company.jpg";
 import probate from "@/public/assets/probate.jpg";
 import Image from "next/image";
 
 const Expertise = () => {
-    const images = [litigation, probate, commercial, conflict, conflict];
+    const images = [litigation, probate, commercial, company, conflict];
 
     return (
         <div className="">

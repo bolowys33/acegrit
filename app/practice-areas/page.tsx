@@ -3,15 +3,16 @@ import SectionTitle from "@/components/SectionTitle";
 import { Container } from "@mui/material";
 import commercial from "@/public/assets/commercial.jpg";
 import litigation from "@/public/assets/litigation.jpg";
-import conflict from "@/public/assets/conflict.jpg";
 import probate from "@/public/assets/probate.jpg";
+import conflict from "@/public/assets/conflict.jpg";
+import company from "@/public/assets/company.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { practiceAreas } from "@/constants/links";
 import Social from "@/components/Social";
 
 const PracticeAreas = () => {
-    const images = [litigation, probate, commercial, conflict, conflict];
+    const images = [litigation, probate, commercial, company, conflict];
 
     return (
         <div>
