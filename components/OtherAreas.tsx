@@ -6,6 +6,7 @@ import { FC } from "react";
 import commercial from "@/public/assets/commercial.jpg";
 import litigation from "@/public/assets/litigation.jpg";
 import conflict from "@/public/assets/conflict.jpg";
+import company from "@/public/assets/company.jpg";
 import probate from "@/public/assets/probate.jpg";
 
 interface OtherAreasProps {
@@ -13,7 +14,7 @@ interface OtherAreasProps {
 }
 
 const OtherAreas: FC<OtherAreasProps> = ({ area }) => {
-    const images = [litigation, probate, commercial, conflict, conflict];
+    const images = [litigation, probate, commercial, company, conflict];
     const linkAreas = practiceAreas.filter((item) => item.path !== `/${area}`);
     const filteredIndex = practiceAreas.findIndex(
         (item) => item.path === `/${area}`
