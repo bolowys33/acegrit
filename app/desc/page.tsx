@@ -3,8 +3,8 @@ import { Container } from "@mui/material";
 const BlogContent = () => {
     return (
         <div>
-            <div className={`bg-cover bg-center text-center mb-10`}>
-                <div className="bg-navy bg-opacity-40 py-[100px] md:py-[180px]">
+            <div className={`bg-cover bg-center text-center mb-10 blog-image`}>
+                <div className="bg-black bg-opacity-45 py-[100px] md:py-[180px]">
                     <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6">
                         Immovable Assets as Securities; The New Era
                     </h1>
