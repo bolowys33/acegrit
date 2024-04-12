@@ -13,7 +13,7 @@ interface OtherAreasProps {
 }
 
 const OtherAreas: FC<OtherAreasProps> = ({ area }) => {
-    const images = [litigation, probate, commercial, conflict];
+    const images = [litigation, probate, commercial, conflict, conflict];
     const linkAreas = practiceAreas.filter((item) => item.path !== `/${area}`);
     const filteredIndex = practiceAreas.findIndex(
         (item) => item.path === `/${area}`
