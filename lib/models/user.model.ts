@@ -1,7 +1,7 @@
-import mongoose, { CallbackError } from "mongoose";
-import bcrypt from "bcryptjs"
+import { CallbackError, Schema, model, models } from "mongoose";
+import bcrypt from "bcryptjs";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: {
         type: String,
         unique: true,
@@ -23,18 +23,17 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-    try{
-        if(this.isModified('password')){
-        const hashPassword = await bcrypt.hash(this.password, 10)
-        this.password = hashPassword
-    }
-    next()
-}
-    catch(error){
-        return next(error as CallbackError)
+    try {
+        if (this.isModified("password")) {
+            const hashPassword = await bcrypt.hash(this.password, 10);
+            this.password = hashPassword;
+        }
+        next();
+    } catch (error) {
+        return next(error as CallbackError);
     }
 });
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = models.User || model("User", userSchema);
 
 export default User;
