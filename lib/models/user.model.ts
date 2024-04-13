@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose, { CallbackError } from "mongoose";
+import bcrypt from "bcryptjs"
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -12,13 +13,26 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is required"],
-        minlength: [8, "Username must be at least 8 characters long"],
+        minlength: [8, "Password must be at least 8 characters long"],
     },
     email: {
         type: String,
         unique: true,
         required: [true, "Email is required"],
     },
+});
+
+userSchema.pre("save", async function (next) {
+    try{
+        if(this.isModified('password')){
+        const hashPassword = await bcrypt.hash(this.password, 10)
+        this.password = hashPassword
+    }
+    next()
+}
+    catch(error){
+        return next(error as CallbackError)
+    }
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
