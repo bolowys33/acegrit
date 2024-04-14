@@ -1,7 +1,7 @@
 import { CallbackError, Schema, model, models } from "mongoose";
 import bcrypt from "bcryptjs";
 
-const userSchema = new Schema({
+const adminSchema = new Schema({
     username: {
         type: String,
         unique: true,
@@ -22,7 +22,7 @@ const userSchema = new Schema({
     },
 });
 
-userSchema.pre("save", async function (next) {
+adminSchema.pre("save", async function (next) {
     try {
         if (this.isModified("password")) {
             const hashPassword = await bcrypt.hash(this.password, 10);
@@ -34,6 +34,6 @@ userSchema.pre("save", async function (next) {
     }
 });
 
-const User = models.User || model("User", userSchema);
+const Admin = models.Admin || model("Admin", adminSchema);
 
-export default User;
+export default Admin;
