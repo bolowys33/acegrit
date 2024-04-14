@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const postSchema = new Schema({
     title: {
@@ -18,3 +18,7 @@ const postSchema = new Schema({
         default: Date.now(),
     },
 });
+
+const Post = models.Post || model("Post", postSchema)
+
+export default Post
