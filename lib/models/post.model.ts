@@ -19,6 +19,6 @@ const postSchema = new Schema({
     },
 });
 
-const Post = models.Post || model("Post", postSchema)
+const Post = models.Post || model("Post", postSchema);
 
-export default Post
+export default Post;
