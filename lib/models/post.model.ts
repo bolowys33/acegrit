@@ -1,6 +1,5 @@
 import { Schema } from "mongoose";
 
-
 const postSchema = new Schema({
     title: {
         type: String,
@@ -8,7 +7,14 @@ const postSchema = new Schema({
     },
     content: {
         type: String,
-        required: [true, "Post content is required"]
+        required: [true, "Post content is required"],
     },
-    
-})
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
+    date_created: {
+        Date,
+        default: Date.now(),
+    },
+});
