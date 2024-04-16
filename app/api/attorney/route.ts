@@ -16,7 +16,7 @@ async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>)
             return res.status(404).json({success: false, message: "No attorney found"})
         }
 
-        re
+        return res.status(200).json({success: true, data: attorneys})
 
     } catch (error) {
         
