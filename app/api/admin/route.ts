@@ -41,3 +41,6 @@ const adminRegister = async (req: NextApiRequest, res: NextApiResponse<Response>
           }
     }
 };
+
+
+export default routeHandler
