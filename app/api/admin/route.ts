@@ -13,6 +13,6 @@ const adminRegister = async (req: NextApiRequest, res: NextApiResponse) => {
         await admin.save();
         res.status(201).json({ message: "Admin registered successfully" });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: (error as Error).message });
     }
 };
