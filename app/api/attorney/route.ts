@@ -16,10 +16,14 @@ async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>)
             return res.status(404).json({success: false, message: "No attorney found"})
         }
 
-        return res.status(200).json({success: true, data: attorneys})
+        return res.status(200).json({success: true, message:"Attorney added successfully", data: attorneys})
 
     } catch (error) {
-        
+        if (error instanceof Error) {
+            return res.status(400).json({ success: false, message: error.message });
+          } else {
+            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+          }
     }
 }
 
