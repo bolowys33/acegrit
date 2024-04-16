@@ -13,14 +13,31 @@ const adminRegister = async (req: NextApiRequest, res: NextApiResponse<Response>
         const { username, password, email } = req.body;
 
         if (!username || !password || !email) {
-            res.status(400).json({success: false, message: "Please provide all required fields"})
+            return res.status(400).json({success: false, message: "Please provide all required fields"})
+        }
+
+        
+        const existingAdmin = await Admin.findOne({
+            $or: [{ email }, { username }]
+        });
+        
+        if (existingAdmin) {
+            if (existingAdmin.email === email) {
+                return res.status(400).json({ success: false, message: "Admin with email address already exists" });
+            } else {
+                return res.status(400).json({ success: false, message: "Admin with username already exists" });
+            }
         }
 
         const admin = new Admin({ username, password, email });
         await admin.save();
         
-        res.status(201).json({success: true, message: "Admin registered successfully" });
+        return res.status(201).json({success: true, message: "Admin registered successfully" });
     } catch (error) {
-        res.status(500).json({success: false, message: (error as Error).message });
+        if (error instanceof Error) {
+            return res.status(400).json({ success: false, message: error.message });
+          } else {
+            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+          }
     }
 };
