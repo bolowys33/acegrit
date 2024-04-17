@@ -6,6 +6,19 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const routeHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     await connectDB()
+
+    switch (req.method) {
+        case "POST":
+          await addAttorney(req, res);
+          break;
+        case "GET":
+          await getAttorneys(req, res);
+          break;
+        default:
+          return res
+            .status(400)
+            .json({ success: false, message: "Unsupported HTTP method" });
+      }
 }
 
 async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>) {
