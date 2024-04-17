@@ -44,3 +44,11 @@ async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>)
 async function addAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
     
 }
+
+async function updateAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
+    
+}
+
+async function removeAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
+    
+}
