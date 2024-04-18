@@ -1,24 +1,28 @@
 import { Response } from "@/constants/response";
 import connectDB from "@/lib/db";
+import { withAuthentication } from "@/lib/middleware/auth";
 import Attorney from "@/lib/models/attorney.model";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
-const routeHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-    await connectDB()
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    await withAuthentication(req, res, async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+        await connectDB()
 
-    switch (req.method) {
-        case "POST":
-          await addAttorney(req, res);
-          break;
-        case "GET":
-          await getAttorneys(req, res);
-          break;
-        default:
-          return res
-            .status(400)
-            .json({ success: false, message: "Unsupported HTTP method" });
-      }
+        switch (req.method) {
+            case "POST":
+            await addAttorney(req, res);
+            break;
+            case "GET":
+            await getAttorneys(req, res);
+            break;
+            default:
+            return res
+                .status(400)
+                .json({ success: false, message: "Unsupported HTTP method" });
+        }
+        });
+    
 }
 
 async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>) {
