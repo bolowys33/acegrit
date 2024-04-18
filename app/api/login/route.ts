@@ -7,16 +7,20 @@ async function adminLogin(
     req: NextApiRequest,
     res: NextApiResponse<Response>
 ) {
+   try {
     const {username, password} = req.body
     if (!username || !password) {
         return res.status(400).json({success: false, message: "Please provide required fields"})
     }
-
+    
     const admin = Admin.findOne({username})
     if (!admin) {
         return res.status(400).json({success: false, message: "Invalid credentials"})
     }
 
     bcrypt.compare
+   } catch (error) {
+    
+   }
 
 }
