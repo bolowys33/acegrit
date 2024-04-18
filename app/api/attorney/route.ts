@@ -16,6 +16,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             case "GET":
             await getAttorneys(req, res);
             break;
+            case "UPDATE":
+            await updateAttorney(req, res);
+            break;
+            case "DELETE":
+            await removeAttorney(req, res);
+            break;
             default:
             return res
                 .status(400)
