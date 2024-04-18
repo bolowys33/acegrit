@@ -3,6 +3,7 @@ import Admin from "@/lib/models/admin.model";
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
+import connectDB from "@/lib/db";
 
 const secret = process.env.JWT_SECRET
 
@@ -35,4 +36,14 @@ async function adminLogin(
         }
    }
 
+}
+
+export default async function loginHandler (req: NextApiRequest, res: NextApiResponse<Response>) {
+    await connectDB()
+
+    if (req.method === "POST") {
+        await adminLogin(req, res)
+    } else {
+        return res.status(400).json({ success: false, message: "Unsupported HTTP method" });
+    }
 }
