@@ -20,7 +20,7 @@ async function adminLogin(
         return res.status(400).json({success: false, message: "Invalid credentials"})
     }
 
-    
+    const token = jwt.sign(, process.env.JWT_SECRET, { expiresIn: '2h' })
 
    } catch (error) {
     
