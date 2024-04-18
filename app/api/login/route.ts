@@ -4,6 +4,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
 
+const secret = process.env.JWT_SECRET
+
 async function adminLogin(
     req: NextApiRequest,
     res: NextApiResponse<Response>
@@ -20,7 +22,8 @@ async function adminLogin(
         return res.status(400).json({success: false, message: "Invalid credentials"})
     }
 
-    const token = jwt.sign(, process.env.JWT_SECRET, { expiresIn: '2h' })
+    const payload = {id: admin._id, username: admin.username, email: admin.email}
+    const token = jwt.sign(payload, secret, { expiresIn: '2h' })
 
    } catch (error) {
     
