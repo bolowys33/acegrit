@@ -25,6 +25,8 @@ async function adminLogin(
     const payload = {id: admin._id, username: admin.username, email: admin.email}
     const token = jwt.sign(payload, secret as string, { expiresIn: '2h' })
 
+    return res.status(200).json({ success: true, message: "Admin logged in successfully", token });
+
    } catch (error) {
         if (error instanceof Error) {
             return res.status(400).json({ success: false, message: error.message });
