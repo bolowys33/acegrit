@@ -9,12 +9,6 @@ interface MulterRequest extends NextApiRequest {
     file: any;
 }
 
-interface UpdateField {
-    name? : string;
-    position?: string;
-    image?: string
-}
-
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     await withAuthentication(req, res, async (req: NextApiRequest, res: NextApiResponse<Response>) => {
@@ -123,7 +117,7 @@ async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>
         attorney.position = position || attorney.position;
 
         if (imagePath) {
-            attorney.image = imagePath; // Update the image path if a new image is uploaded
+            attorney.image = imagePath;
         }
 
         const updatedAttorney = await attorney.save();
