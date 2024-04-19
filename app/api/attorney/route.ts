@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         switch (req.method) {
             case "POST":
-            await addAttorney(req, res);
+            await addAttorney(req as MulterRequest, res);
             break;
             case "GET":
             await getAttorneys(req, res);
