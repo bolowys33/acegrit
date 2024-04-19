@@ -22,10 +22,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             await getAttorneys(req, res);
             break;
             case "UPDATE":
-            await updateAttorney(req as MulterRequest, res);
-            break;
-            case "DELETE":
-            await removeAttorney(req, res);
             break;
             default:
             return res
