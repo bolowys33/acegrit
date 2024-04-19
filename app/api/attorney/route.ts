@@ -21,8 +21,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             case "GET":
             await getAttorneys(req, res);
             break;
-            case "UPDATE":
-            break;
             default:
             return res
                 .status(400)

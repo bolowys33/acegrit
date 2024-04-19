@@ -1,7 +1,35 @@
 import { Response } from "@/constants/response";
+import connectDB from "@/lib/db";
 import multerUploader from "@/lib/image-upload";
+import { withAuthentication } from "@/lib/middleware/auth";
 import Attorney from "@/lib/models/attorney.model";
 import { NextApiRequest, NextApiResponse } from "next";
+
+interface MulterRequest extends NextApiRequest {
+    file: any;
+}
+
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    await withAuthentication(req, res, async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+        await connectDB()
+
+        switch (req.method) {
+            case "UPDATE":
+            await updateAttorney(req as MulterRequest, res);
+            break;
+            case "DELETE":
+            await removeAttorney(req, res);
+            break;
+            break;
+            default:
+            return res
+                .status(400)
+                .json({ success: false, message: "Unsupported HTTP method" });
+        }
+        });
+    
+}
 
 async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
     try {
