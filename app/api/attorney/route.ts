@@ -89,7 +89,13 @@ async function addAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
 }
 
 async function updateAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
-    const {position, name } = req.body
+    try {
+        const { id }= req.query
+        const { name, position} = req.body
+    } catch (error) {
+        
+    }
+
 }
 
 async function removeAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
