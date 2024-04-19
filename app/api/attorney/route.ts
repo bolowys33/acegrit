@@ -1,5 +1,6 @@
 import { Response } from "@/constants/response";
 import connectDB from "@/lib/db";
+import multerUploader from "@/lib/image-upload";
 import { withAuthentication } from "@/lib/middleware/auth";
 import Attorney from "@/lib/models/attorney.model";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -52,7 +53,35 @@ async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>)
 
 
 async function addAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
-    
+    try {
+        const {name, position} = req.body
+        let image
+
+        multerUploader.single('image')(req as any, res as any, err => {
+            try {
+                if (err) {
+                    throw new Error('Error uploading image: ' + err.message);
+                }
+                image = req.file
+            } catch (error) {
+                
+            }
+        })
+
+        if(!name || !position || image) return res.status(400).json({success: false, message: "Please provide all required fields"})
+
+        const attorney = new Attorney({name, position, image})  
+        await attorney.save()
+
+        return res.status(201).json({success: true, message: "Attorney added successfully" });
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ success: false, message: error.message });
+          } else {
+            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+          }
+    }
+
 }
 
 async function updateAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
