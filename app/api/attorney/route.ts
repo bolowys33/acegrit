@@ -5,6 +5,10 @@ import { withAuthentication } from "@/lib/middleware/auth";
 import Attorney from "@/lib/models/attorney.model";
 import { NextApiRequest, NextApiResponse } from "next";
 
+interface MulterRequest extends NextApiRequest {
+    file: any;
+}
+
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     await withAuthentication(req, res, async (req: NextApiRequest, res: NextApiResponse<Response>) => {
@@ -52,7 +56,7 @@ async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>)
 }
 
 
-async function addAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
+async function addAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
     try {
         const {name, position} = req.body
         let image
