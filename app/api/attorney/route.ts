@@ -113,8 +113,20 @@ async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>
             });
         });
     
-        const updateField: UpdateField = {}
-        if (name) updateField.name = name
+        const attorney = await Attorney.findById(id);
+
+        if (!attorney) {
+            return res.status(404).json({ success: false, message: "Attorney not found" });
+        }
+
+        attorney.name = name || attorney.name;
+        attorney.position = position || attorney.position;
+
+        if (imagePath) {
+            attorney.image = imagePath; // Update the image path if a new image is uploaded
+        }
+
+        const updatedAttorney = await attorney.save();
 
 
     } catch (error) {
