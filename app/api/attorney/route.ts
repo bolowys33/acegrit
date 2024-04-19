@@ -92,6 +92,10 @@ async function updateAttorney(req: NextApiRequest, res: NextApiResponse<Response
     try {
         const { id }= req.query
         const { name, position} = req.body
+
+        if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
+
+
     } catch (error) {
         
     }
