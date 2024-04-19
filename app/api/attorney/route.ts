@@ -141,21 +141,21 @@ async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>
 
 async function removeAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
    try {
-    const { id }= req.query
-    if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
+        const { id }= req.query
+        if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
 
-    const attorney = await Attorney.findByIdAndDelete(id);
-    if (!attorney) {
-        return NextResponse.json({ success: false, message: "Attorney not found" }, { status: 404 });
-    }
+        const attorney = await Attorney.findByIdAndDelete(id);
+        if (!attorney) {
+            return res.status(404).json({ success: false, message: "Attorney not found" });
+        }
 
-    return res.status(200).json({ success: true, message: "Attorney updated successfully"})
+        return res.status(200).json({ success: true, message: "Attorney updated successfully"})
    } catch (error) {
-    if (error instanceof Error) {
-        return res.status(400).json({ success: false, message: error.message });
-      } else {
-        return res.status(500).json({ success: false, message: "An unknown error occurred" });
-      }
+        if (error instanceof Error) {
+            return res.status(400).json({ success: false, message: error.message });
+        } else {
+            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+        }
    }
 
 }
