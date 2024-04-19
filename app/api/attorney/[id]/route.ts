@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         await connectDB()
 
         switch (req.method) {
-            case "UPDATE":
+            case "PUT":
             await updateAttorney(req as MulterRequest, res);
             break;
             case "DELETE":
