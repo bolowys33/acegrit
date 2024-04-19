@@ -9,6 +9,12 @@ interface MulterRequest extends NextApiRequest {
     file: any;
 }
 
+interface UpdateField {
+    name? : string;
+    position?: string;
+    image?: string
+}
+
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     await withAuthentication(req, res, async (req: NextApiRequest, res: NextApiResponse<Response>) => {
@@ -22,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             await getAttorneys(req, res);
             break;
             case "UPDATE":
-            await updateAttorney(req, res);
+            await updateAttorney(req as MulterRequest, res);
             break;
             case "DELETE":
             await removeAttorney(req, res);
@@ -88,12 +94,27 @@ async function addAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
 
 }
 
-async function updateAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
+async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
     try {
         const { id }= req.query
         const { name, position} = req.body
+        let imagePath
 
         if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
+
+        await new Promise<void>((resolve, reject) => {
+            multerUploader.single('image')(req as any, res as any, err => {
+                if (err) {
+                    reject(new Error('Error uploading image: ' + err.message));
+                } else {
+                    imagePath = req.file.path;
+                    resolve();
+                }
+            });
+        });
+    
+        const updateField: UpdateField = {}
+        if (name) updateField.name = name
 
 
     } catch (error) {
