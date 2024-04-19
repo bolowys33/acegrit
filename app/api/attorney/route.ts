@@ -59,25 +59,25 @@ async function getAttorneys(req: NextApiRequest, res: NextApiResponse<Response>)
 async function addAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
     try {
         const {name, position} = req.body
-        let image
+        let imagePath
 
         await new Promise<void>((resolve, reject) => {
             multerUploader.single('image')(req as any, res as any, err => {
                 if (err) {
                     reject(new Error('Error uploading image: ' + err.message));
                 } else {
-                    image = req.file;
+                    imagePath = req.file.path;
                     resolve();
                 }
             });
         });
 
-        if(!name || !position || image) return res.status(400).json({success: false, message: "Please provide all required fields"})
+        if(!name || !position || !imagePath) return res.status(400).json({success: false, message: "Please provide all required fields"})
 
-        const attorney = new Attorney({name, position, image})  
+        const attorney = new Attorney({name, position, image: imagePath})  
         await attorney.save()
 
-        return res.status(201).json({success: true, message: "Attorney added successfully" });
+        return res.status(201).json({success: true, message: "Attorney added successfully", data: attorney});
     } catch (error) {
         if (error instanceof Error) {
             return res.status(400).json({ success: false, message: error.message });
