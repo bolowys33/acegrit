@@ -140,6 +140,7 @@ async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>
 }
 
 async function removeAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
+   try {
     const { id }= req.query
     if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
 
@@ -149,5 +150,8 @@ async function removeAttorney(req: NextApiRequest, res: NextApiResponse<Response
     }
 
     return res.status(200).json({ success: true, message: "Attorney updated successfully"})
+   } catch (error) {
+    
+   }
 
 }
