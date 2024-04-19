@@ -128,9 +128,13 @@ async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>
 
         const updatedAttorney = await attorney.save();
 
-
+        return res.status(200).json({ success: true, message: "Attorney updated successfully", data: updatedAttorney });
     } catch (error) {
-        
+        if (error instanceof Error) {
+            return res.status(400).json({ success: false, message: error.message });
+          } else {
+            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+          }
     }
 
 }
