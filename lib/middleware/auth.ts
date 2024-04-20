@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import { Response } from "@/constants/response";
 
 interface DecodedToken {
     id: string; 
