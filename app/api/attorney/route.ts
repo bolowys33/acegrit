@@ -74,6 +74,17 @@ export async function POST(req: Request): Promise<Response> {
             );
         }
 
+        const allowedFormats = ["image/jpeg", "image/png"];
+        if (!allowedFormats.includes(image.type)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Only JPG and PNG file formats are allowed",
+                },
+                { status: 400 }
+            );
+        }
+
         const mimeType = image.type;
         const imageBuffer = await image.arrayBuffer();
         const encoding = "base64";
