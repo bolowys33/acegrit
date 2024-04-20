@@ -1,49 +1,64 @@
-import { Response } from "@/constants/response";
+import { NextResponse } from "next/server";
 import Admin from "@/lib/models/admin.model";
-import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import connectDB from "@/lib/db";
 
-const secret = process.env.JWT_SECRET
+const secret = process.env.JWT_SECRET;
 
-async function adminLogin(
-    req: NextApiRequest,
-    res: NextApiResponse<Response>
-) {
-   try {
-    const {username, password} = req.body
-    if (!username || !password) {
-        return res.status(400).json({success: false, message: "Please provide required fields"})
-    }
+export async function POST(request: Request): Promise<Response> {
+    await connectDB();
     
-    const admin = await Admin.findOne({username})
-    const isPasswordValid = await bcrypt.compare(password, admin.password)
-    if (!admin || !isPasswordValid) {
-        return res.status(400).json({success: false, message: "Invalid credentials"})
-    }
+    try {
+        const { username, password } = await request.json();
 
-    const payload = {id: admin._id, username: admin.username, email: admin.email}
-    const token = jwt.sign(payload, secret as string, { expiresIn: '2h' })
-
-    return res.status(200).json({ success: true, message: "Admin logged in successfully", token });
-
-   } catch (error) {
-        if (error instanceof Error) {
-            return res.status(400).json({ success: false, message: error.message });
-        } else {
-            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+        if (!username || !password) {
+            return NextResponse.json(
+                { success: false, message: "Please provide required fields" },
+                { status: 400 }
+            );
         }
-   }
 
-}
+        const admin = await Admin.findOne({ username });
 
-export default async function loginHandler (req: NextApiRequest, res: NextApiResponse<Response>) {
-    await connectDB()
+        if (!admin) {
+            return NextResponse.json(
+                { success: false, message: "Invalid credentials" },
+                { status: 400 }
+            );
+        }
 
-    if (req.method === "POST") {
-        await adminLogin(req, res)
-    } else {
-        return res.status(400).json({ success: false, message: "Unsupported HTTP method" });
+        const isPasswordValid = await bcrypt.compare(password, admin.password);
+
+        if (!isPasswordValid) {
+            return NextResponse.json(
+                { success: false, message: "Invalid credentials" },
+                { status: 400 }
+            );
+        }
+
+        const payload = {
+            id: admin._id,
+            username: admin.username,
+            email: admin.email,
+        };
+        const token = jwt.sign(payload, secret as string, { expiresIn: "2h" });
+
+        return NextResponse.json(
+            { success: true, message: "Admin logged in successfully", token },
+            { status: 200 }
+        );
+    } catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
     }
 }
