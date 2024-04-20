@@ -1,7 +1,7 @@
 import { Response } from "@/constants/response";
 import connectDB from "@/lib/db";
 import multerUploader from "@/lib/image-upload";
-import { withAuthentication } from "@/lib/middleware/auth";
+import { withAuthentication } from "@/middleware";
 import Attorney from "@/lib/models/attorney.model";
 import { NextApiRequest, NextApiResponse } from "next";
 
