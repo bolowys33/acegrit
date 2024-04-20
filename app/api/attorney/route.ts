@@ -1,11 +1,7 @@
 import connectDB from "@/lib/db";
-import multerUploader from "@/lib/image-upload";
+import uploadImage from "@/lib/image-upload";
 import Attorney from "@/lib/models/attorney.model";
 import { NextResponse } from "next/server";
-
-interface MulterRequest extends Request {
-    file: any;
-}
 
 export async function GET(): Promise<Response> {
     await connectDB();
@@ -36,7 +32,7 @@ export async function GET(): Promise<Response> {
     }
 }
 
-export async function POST(req: MulterRequest): Promise<Response> {
+export async function POST(req: Request): Promise<Response> {
     await connectDB();
     try {
         const adminId = req.headers.get("X-Admin-ID");
@@ -44,25 +40,20 @@ export async function POST(req: MulterRequest): Promise<Response> {
         const adminEmail = req.headers.get("X-Admin-Email");
         if (!adminId || !adminUsername || !adminEmail) {
             return NextResponse.json(
-                { success: false, message: "Unauthorized. Please log in attorney" },
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in attorney",
+                },
                 { status: 401 }
             );
         }
 
-        const { name, position } = await req.json();
-        let imagePath;
-        await new Promise<void>((resolve, reject) => {
-            multerUploader.single("image")(req as any, {} as any, (err) => {
-                if (err) {
-                    reject(new Error("Error uploading image: " + err.message));
-                } else {
-                    imagePath = req.file.path;
-                    resolve();
-                }
-            });
-        });
+        const formData = await req.formData();
+        const name = formData.get("name")?.toString();
+        const position = formData.get("position")?.toString();
+        const image = formData.get("image") as File;
 
-        if (!name || !position || !imagePath) {
+        if (!name || !position || !image) {
             return NextResponse.json(
                 {
                     success: false,
@@ -71,6 +62,26 @@ export async function POST(req: MulterRequest): Promise<Response> {
                 { status: 400 }
             );
         }
+
+        const maxFileSizeInBytes = 1 * 1024 * 1024; // 1MB
+        if (image.size > maxFileSizeInBytes) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Image file size should not exceed 1MB",
+                },
+                { status: 400 }
+            );
+        }
+
+        const mimeType = image.type;
+        const imageBuffer = await image.arrayBuffer();
+        const encoding = "base64";
+        const base64Data = Buffer.from(imageBuffer).toString("base64");
+
+        const fileUri = "data:" + mimeType + ";" + encoding + "," + base64Data;
+
+        const imagePath = await uploadImage(fileUri);
 
         const attorney = new Attorney({ name, position, image: imagePath });
         await attorney.save();
