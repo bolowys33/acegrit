@@ -1,98 +1,207 @@
-import { Response } from "@/constants/response";
+
 import connectDB from "@/lib/db";
-import multerUploader from "@/lib/image-upload";
-import { withAuthentication } from "@/middleware";
+import uploadImage from "@/lib/image-upload";
 import Attorney from "@/lib/models/attorney.model";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-interface MulterRequest extends NextApiRequest {
-    file: any;
-}
-
-
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-    await withAuthentication(req, res, async (req: NextApiRequest, res: NextApiResponse<Response>) => {
-        await connectDB()
-
-        switch (req.method) {
-            case "PUT":
-            await updateAttorney(req as MulterRequest, res);
-            break;
-            case "DELETE":
-            await removeAttorney(req, res);
-            break;
-            break;
-            default:
-            return res
-                .status(400)
-                .json({ success: false, message: "Unsupported HTTP method" });
-        }
-        });
-    
-}
-
-async function updateAttorney(req: MulterRequest, res: NextApiResponse<Response>) {
+export async function POST(req: Request): Promise<Response> {
+    await connectDB();
     try {
-        const { id }= req.query
-        const { name, position} = req.body
-        let imagePath
+        const adminId = req.headers.get("X-Admin-ID");
+        const adminUsername = req.headers.get("X-Admin-Username");
+        const adminEmail = req.headers.get("X-Admin-Email");
+        if (!adminId || !adminUsername || !adminEmail) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in attorney",
+                },
+                { status: 401 }
+            );
+        }
 
-        if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
+        const formData = await req.formData();
+        const name = formData.get("name")?.toString();
+        const position = formData.get("position")?.toString();
+        const image = formData.get("image") as File;
 
-        await new Promise<void>((resolve, reject) => {
-            multerUploader.single('image')(req as any, res as any, err => {
-                if (err) {
-                    reject(new Error('Error uploading image: ' + err.message));
-                } else {
-                    imagePath = req.file.path;
-                    resolve();
-                }
-            });
-        });
-    
+        if (!name || !position || !image) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Please provide all required fields",
+                },
+                { status: 400 }
+            );
+        }
+
+        const maxFileSizeInBytes = 1 * 1024 * 1024; // 1MB
+        if (image.size > maxFileSizeInBytes) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Image file size should not exceed 1MB",
+                },
+                { status: 400 }
+            );
+        }
+
+        const mimeType = image.type;
+        const imageBuffer = await image.arrayBuffer();
+        const encoding = "base64";
+        const base64Data = Buffer.from(imageBuffer).toString("base64");
+
+        const fileUri = "data:" + mimeType + ";" + encoding + "," + base64Data;
+
+        const imagePath = await uploadImage(fileUri);
+
+        const attorney = new Attorney({ name, position, image: imagePath });
+        await attorney.save();
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Attorney added successfully",
+                data: attorney,
+            },
+            { status: 201 }
+        );
+    } catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
+    }
+}
+
+export async function PUT(req: NextRequest): Promise<Response> {
+    await connectDB();
+    try {
+        const id = req.nextUrl.searchParams.get("id");
+        if (!id)
+            return NextResponse.json(
+                { success: false, message: "Please provide attorney id" },
+                { status: 400 }
+            );
+
+        const adminId = req.headers.get("X-Admin-ID");
+        const adminUsername = req.headers.get("X-Admin-Username");
+        const adminEmail = req.headers.get("X-Admin-Email");
+        if (!adminId || !adminUsername || !adminEmail) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in attorney",
+                },
+                { status: 401 }
+            );
+        }
+
+        const formData = await req.formData();
+        const name = formData.get("name")?.toString();
+        const position = formData.get("position")?.toString();
+        const image = formData.get("image") as File;
+
+
         const attorney = await Attorney.findById(id);
 
         if (!attorney) {
-            return res.status(404).json({ success: false, message: "Attorney not found" });
-        }
+      return NextResponse.json({ success: false, message: 'Attorney not found' }, { status: 404 });
+    }
 
         attorney.name = name || attorney.name;
         attorney.position = position || attorney.position;
-
-        if (imagePath) {
-            attorney.image = imagePath;
+    
+        if (image) {
+            const maxFileSizeInBytes = 1 * 1024 * 1024; // 1MB
+            if (image.size > maxFileSizeInBytes) {
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Image file size should not exceed 1MB",
+                    },
+                    { status: 400 }
+                );
+            }
+    
+            const mimeType = image.type;
+            const imageBuffer = await image.arrayBuffer();
+            const encoding = "base64";
+            const base64Data = Buffer.from(imageBuffer).toString("base64");
+    
+            const fileUri = "data:" + mimeType + ";" + encoding + "," + base64Data;
+    
+            const imagePath = await uploadImage(fileUri)
+            attorney.image = imagePath
         }
 
         const updatedAttorney = await attorney.save();
 
-        return res.status(200).json({ success: true, message: "Attorney updated successfully", data: updatedAttorney });
+        return NextResponse.json({ success: true, message: 'Attorney updated successfully', data: updatedAttorney }, { status: 200 });
     } catch (error) {
         if (error instanceof Error) {
-            return res.status(400).json({ success: false, message: error.message });
+            return NextResponse.json({ success: false, message: error.message }, { status: 400 });
           } else {
-            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+            return NextResponse.json({ success: false, message: 'An unknown error occurred' }, { status: 500 });
           }
     }
-
 }
 
-async function removeAttorney(req: NextApiRequest, res: NextApiResponse<Response>) {
-   try {
-        const { id }= req.query
-        if (!id) return res.status(400).json({success: false, message: "Please provide attorney id"})
+export async function DELETE(req: NextRequest): Promise<Response> {
+    await connectDB();
+
+    try {
+        const id = req.nextUrl.searchParams.get("id");
+        if (!id)
+            return NextResponse.json(
+                { success: false, message: "Please provide attorney id" },
+                { status: 400 }
+            );
+
+        const adminId = req.headers.get("X-Admin-ID");
+        const adminUsername = req.headers.get("X-Admin-Username");
+        const adminEmail = req.headers.get("X-Admin-Email");
+        if (!adminId || !adminUsername || !adminEmail) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in",
+                },
+                { status: 401 }
+            );
+        }
+
+        
 
         const attorney = await Attorney.findByIdAndDelete(id);
         if (!attorney) {
-            return res.status(404).json({ success: false, message: "Attorney not found" });
+            return NextResponse.json(
+                { success: false, message: "Attorney not found" },
+                { status: 404 }
+            );
         }
 
-        return res.status(200).json({ success: true, message: "Attorney updated successfully"})
-   } catch (error) {
+        return NextResponse.json(
+            { success: true, message: "Attorney deleted successfully" },
+            { status: 200 }
+        );
+    } catch (error) {
         if (error instanceof Error) {
-            return res.status(400).json({ success: false, message: error.message });
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
         } else {
-            return res.status(500).json({ success: false, message: "An unknown error occurred" });
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
         }
-   }
-
+    }
 }
