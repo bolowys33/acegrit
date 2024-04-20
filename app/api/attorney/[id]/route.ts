@@ -34,6 +34,16 @@ export async function PUT(
         const position = formData.get("position")?.toString();
         const image = formData.get("image") as File;
 
+        if (!name && !position && !image) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Please provide all required fields",
+                },
+                { status: 400 }
+            );
+        }
+
         const attorney = await Attorney.findById(id);
 
         if (!attorney) {
