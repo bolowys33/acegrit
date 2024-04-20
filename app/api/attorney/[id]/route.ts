@@ -103,6 +103,15 @@ export async function PUT(
         );
     } catch (error) {
         if (error instanceof Error) {
+            if (error.message === "Error: Unexpected end of form")
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Provide at least one field for update",
+                    },
+                    { status: 400 }
+                );
+                
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
