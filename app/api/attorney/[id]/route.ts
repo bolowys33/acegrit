@@ -3,10 +3,13 @@ import uploadImage from "@/lib/image-upload";
 import Attorney from "@/lib/models/attorney.model";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(req: NextRequest): Promise<Response> {
+export async function PUT(
+    req: Request,
+    { params }: { params: { id: string } }
+): Promise<Response> {
     await connectDB();
     try {
-        const id = req.nextUrl.searchParams.get("id");
+        const { id } = params;
         if (!id)
             return NextResponse.json(
                 { success: false, message: "Please provide attorney id" },
@@ -103,11 +106,14 @@ export async function PUT(req: NextRequest): Promise<Response> {
     }
 }
 
-export async function DELETE(req: NextRequest): Promise<Response> {
+export async function DELETE(
+    req: Request,
+    { params }: { params: { id: string } }
+): Promise<Response> {
     await connectDB();
 
     try {
-        const id = req.nextUrl.searchParams.get("id");
+        const { id } = params;
         if (!id)
             return NextResponse.json(
                 { success: false, message: "Please provide attorney id" },

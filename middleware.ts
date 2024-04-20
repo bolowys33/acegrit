@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
-import { JWSInvalid, JWTClaimValidationFailed, JWTExpired} from "jose/errors";
+import { JWSInvalid, JWTClaimValidationFailed, JWTExpired } from "jose/errors";
 
 interface DecodedToken {
     id: string;
@@ -52,18 +52,21 @@ export async function middleware(request: NextRequest) {
                 { success: false, message: "Invalid token" },
                 { status: 401 }
             );
-        }
-         else {
+        } else {
             console.log(error);
             return NextResponse.json(
                 { success: false, message: "An unknown error occurred" },
                 { status: 500 }
-                
             );
         }
     }
 }
 
 export const config = {
-    matcher: ["/api/attorney", "/api/admin", "/api/post"],
+    matcher: [
+        "/api/attorney",
+        "/api/admin",
+        "/api/post",
+        "/api/attorney/:path*",
+    ],
 };
