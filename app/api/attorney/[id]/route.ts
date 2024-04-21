@@ -91,7 +91,7 @@ export async function PUT(
             await deleteImage(imageId, "updating")
                 
             const {imageUrl, publicId }= await uploadImage(fileUri);
-            attorney.image = imageUrl;
+            attorney.image_url = imageUrl;
             attorney.image_id = publicId
         }
 
