@@ -1,4 +1,4 @@
-import { v2 as cloudinary } from "cloudinary";
+import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -12,7 +12,7 @@ export default async function uploadImage(file: string): Promise<string> {
   }
 
   try {
-    const uploadedResponse = await cloudinary.uploader.upload(file, {
+    const uploadedResponse: UploadApiResponse = await cloudinary.uploader.upload(file, {
       folder: "acegrit",
       allowed_formats: ["jpg", "png"],
       transformation: [{ width: 500, height: 500, crop: "limit" }],
@@ -21,4 +21,12 @@ export default async function uploadImage(file: string): Promise<string> {
   } catch (error: any) {
     throw new Error(`Error uploading image: ${error.message}`);
   }
+}
+
+export async function deleteImage(publicId: string, action: string) {
+    try {
+       await cloudinary.uploader.destroy(publicId)
+    } catch (error: any) {
+      throw new Error(`Error ${action} image: ${error.message}`);
+    }
 }

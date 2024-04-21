@@ -1,5 +1,5 @@
 import connectDB from "@/lib/db";
-import uploadImage from "@/lib/image-upload";
+import uploadImage, { deleteImage } from "@/lib/image-upload";
 import Attorney from "@/lib/models/attorney.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -159,6 +159,10 @@ export async function DELETE(
                 { status: 404 }
             );
         }
+
+        const publicId = attorney.image.split("/").pop().split(".")[0];
+        
+        await deleteImage(publicId, "deleting")
 
         return NextResponse.json(
             { success: true, message: "Attorney deleted successfully" },
