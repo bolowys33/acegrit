@@ -10,7 +10,7 @@ export async function GET(): Promise<Response> {
         if (attorneys.length === 0) {
             return NextResponse.json(
                 { success: false, message: "No attorney found" },
-                { status: 400 }
+                { status: 404 }
             );
         }
         return NextResponse.json(
