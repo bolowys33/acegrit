@@ -95,7 +95,7 @@ export async function POST(req: Request): Promise<Response> {
 
         const {imageUrl, publicId }= await uploadImage(fileUri);
 
-        const attorney = new Attorney({ name, position, image: imageUrl, image_id: publicId });
+        const attorney = new Attorney({ name, position, image_url: imageUrl, image_id: publicId });
         await attorney.save();
         return NextResponse.json(
             {
