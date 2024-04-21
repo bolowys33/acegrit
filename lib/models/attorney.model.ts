@@ -13,6 +13,7 @@ const attorneySchema = new Schema({
         type: String,
         required: [true, "Attorney image  is required"],
     },
+    image_id: String
 });
 
 const Attorney = models.Attorney || model("Attorney", attorneySchema);

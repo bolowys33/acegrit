@@ -19,6 +19,7 @@ export async function GET(): Promise<Response> {
         );
     } catch (error) {
         if (error instanceof Error) {
+            console.log(error)
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
@@ -92,9 +93,9 @@ export async function POST(req: Request): Promise<Response> {
 
         const fileUri = "data:" + mimeType + ";" + encoding + "," + base64Data;
 
-        const imagePath = await uploadImage(fileUri);
+        const {imageUrl, publicId }= await uploadImage(fileUri);
 
-        const attorney = new Attorney({ name, position, image: imagePath });
+        const attorney = new Attorney({ name, position, image: imageUrl, image_id: publicId });
         await attorney.save();
         return NextResponse.json(
             {
