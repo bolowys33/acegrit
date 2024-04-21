@@ -87,6 +87,9 @@ export async function PUT(
             const fileUri =
                 "data:" + mimeType + ";" + encoding + "," + base64Data;
 
+            const publicId = attorney.image.split("/").pop().split(".")[0];
+            await deleteImage(publicId, "updating")
+                
             const imagePath = await uploadImage(fileUri);
             attorney.image = imagePath;
         }
