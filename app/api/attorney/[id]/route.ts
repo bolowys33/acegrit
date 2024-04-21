@@ -87,11 +87,12 @@ export async function PUT(
             const fileUri =
                 "data:" + mimeType + ";" + encoding + "," + base64Data;
 
-            const publicId = attorney.image.split("/").pop().split(".")[0];
-            await deleteImage(publicId, "updating")
+            const imageId = attorney.image_id
+            await deleteImage(imageId, "updating")
                 
-            const imagePath = await uploadImage(fileUri);
-            attorney.image = imagePath;
+            const {imageUrl, publicId }= await uploadImage(fileUri);
+            attorney.image = imageUrl;
+            attorney.image_id = publicId
         }
 
         const updatedAttorney = await attorney.save();
@@ -163,7 +164,7 @@ export async function DELETE(
             );
         }
 
-        const publicId = attorney.image.split("/").pop().split(".")[0];
+        const publicId = attorney.image_id
         await deleteImage(publicId, "deleting")
 
         return NextResponse.json(

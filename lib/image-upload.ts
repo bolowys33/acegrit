@@ -26,7 +26,7 @@ export default async function uploadImage(
                 transformation: [{ width: 500, height: 500, crop: "limit" }],
             });
         return {
-            imageUrl: uploadedResponse.secure_ur,
+            imageUrl: uploadedResponse.secure_url,
             publicId: uploadedResponse.public_id,
         };
     } catch (error: any) {
