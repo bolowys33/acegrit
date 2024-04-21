@@ -9,11 +9,13 @@ const attorneySchema = new Schema({
         type: String,
         required: [true, "Attorney position is required"],
     },
-    image: {
+    image_url: {
         type: String,
         required: [true, "Attorney image  is required"],
     },
-    image_id: String
+    image_id: {
+        type: String,
+    },
 });
 
 const Attorney = models.Attorney || model("Attorney", attorneySchema);
