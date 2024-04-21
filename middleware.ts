@@ -64,9 +64,14 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        "/api/attorney",
-        "/api/admin",
-        "/api/post",
-        "/api/attorney/:path*",
+      {
+        source: "/api/attorney",
+        missing: [
+          { type: "request", method: "GET" },
+        ],
+      },
+      "/api/attorney/:path*",
+      "/api/admin",
+      "/api/post",
     ],
-};
+  };
