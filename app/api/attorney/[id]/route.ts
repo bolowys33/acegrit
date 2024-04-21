@@ -161,7 +161,6 @@ export async function DELETE(
         }
 
         const publicId = attorney.image.split("/").pop().split(".")[0];
-        
         await deleteImage(publicId, "deleting")
 
         return NextResponse.json(
