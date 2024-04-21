@@ -12,6 +12,12 @@ interface DecodedToken {
 }
 
 export async function middleware(request: NextRequest) {
+    if (
+        request.nextUrl.pathname === "/api/attorney" &&
+        request.method === "GET"
+    ) {
+        return NextResponse.next();
+    }
     try {
         const token = request.headers.get("authorization");
         if (!token) {
@@ -64,14 +70,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-      {
-        source: "/api/attorney",
-        missing: [
-          { type: "request", method: "GET" },
-        ],
-      },
-      "/api/attorney/:path*",
-      "/api/admin",
-      "/api/post",
+        "/api/attorney",
+        "/api/attorney/:path*",
+        "/api/admin",
+        "/api/post",
     ],
-  };
+};
