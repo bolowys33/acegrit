@@ -13,8 +13,9 @@ interface DecodedToken {
 
 export async function middleware(request: NextRequest) {
     if (
-        request.nextUrl.pathname === "/api/attorney" &&
-        request.method === "GET"
+       ( request.nextUrl.pathname === "/api/attorney" &&
+        request.method === "GET") ||  ( request.nextUrl.pathname === "/api/posts" &&
+        request.method === "GET")
     ) {
         return NextResponse.next();
     }
@@ -73,6 +74,6 @@ export const config = {
         "/api/attorney",
         "/api/attorney/:path*",
         "/api/admin",
-        "/api/post",
+        "/api/posts",
     ],
 };

@@ -5,6 +5,7 @@ import Admin from "@/lib/models/admin.model";
 export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
+        
         const { username, password, email } = await request.json();
 
         if (!username || !password || !email) {

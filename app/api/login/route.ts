@@ -9,6 +9,7 @@ const secret = process.env.JWT_SECRET;
 export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
+        
         const { username, password } = await request.json();
 
         if (!username || !password) {

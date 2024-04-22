@@ -1,7 +1,7 @@
 import connectDB from "@/lib/db";
 import uploadImage, { deleteImage } from "@/lib/image-upload";
 import Attorney from "@/lib/models/attorney.model";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function PUT(
     req: Request,
@@ -9,6 +9,7 @@ export async function PUT(
 ): Promise<Response> {
     try {
         await connectDB();
+
         const { id } = params;
         if (!id)
             return NextResponse.json(
@@ -135,6 +136,7 @@ export async function DELETE(
 ): Promise<Response> {
     try {
         await connectDB();
+        
         const { id } = params;
         if (!id)
             return NextResponse.json(
