@@ -6,12 +6,14 @@ export async function GET(): Promise<Response> {
     try {
         await connectDB();
 
-        const post = await Post.find({});
-        if (post.length === 0) {
+        const posts = await Post.find({});
+        if (posts.length === 0) {
             return NextResponse.json(
                 { success: false, message: "No post found" },
                 { status: 404 }
             );
         }
+
+        return NextResponse.json({success: true, data: posts}, {status: 200})
     } catch (error) {}
 }
