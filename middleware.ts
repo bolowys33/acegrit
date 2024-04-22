@@ -75,5 +75,6 @@ export const config = {
         "/api/attorney/:path*",
         "/api/admin",
         "/api/posts",
+        "/api/posts/:path*",
     ],
 };
