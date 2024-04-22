@@ -33,9 +33,26 @@ export async function GET(): Promise<Response> {
     }
 }
 
-export async function POST(): Promise<Response> {
+export async function POST(req: Request): Promise<Response> {
     try {
-        await connectDB()
+        await connectDB();
+
+        const adminId = req.headers.get("X-Admin-ID");
+        const adminUsername = req.headers.get("X-Admin-Username");
+        const adminEmail = req.headers.get("X-Admin-Email");
+        if (!adminId || !adminUsername || !adminEmail) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 401 }
+            );
+        }
+
+        const formData = await req.formData()
+        const title = formData.
+
     } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json(

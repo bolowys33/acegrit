@@ -36,7 +36,7 @@ export async function GET(): Promise<Response> {
 export async function POST(req: Request): Promise<Response> {
     try {
         await connectDB();
-        
+
         const adminId = req.headers.get("X-Admin-ID");
         const adminUsername = req.headers.get("X-Admin-Username");
         const adminEmail = req.headers.get("X-Admin-Email");
@@ -44,15 +44,15 @@ export async function POST(req: Request): Promise<Response> {
             return NextResponse.json(
                 {
                     success: false,
-                    message: "Unauthorized. Please log in attorney",
+                    message: "Unauthorized. Please log in.",
                 },
                 { status: 401 }
             );
         }
 
         const formData = await req.formData();
-        const name = formData.get("name")?.toString();
-        const position = formData.get("position")?.toString();
+        const name = formData.get("name");
+        const position = formData.get("position");
         const image = formData.get("image") as File;
 
         if (!name || !position || !image) {
@@ -94,9 +94,14 @@ export async function POST(req: Request): Promise<Response> {
 
         const fileUri = "data:" + mimeType + ";" + encoding + "," + base64Data;
 
-        const {imageUrl, publicId }= await uploadImage(fileUri);
+        const { imageUrl, publicId } = await uploadImage(fileUri);
 
-        const attorney = new Attorney({ name, position, image_url: imageUrl, image_id: publicId });
+        const attorney = new Attorney({
+            name,
+            position,
+            image_url: imageUrl,
+            image_id: publicId,
+        });
         await attorney.save();
         return NextResponse.json(
             {
