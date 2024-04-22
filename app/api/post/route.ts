@@ -51,9 +51,10 @@ export async function POST(req: Request): Promise<Response> {
         }
 
         const formData = await req.formData()
-        const title = formData.get("")
-        const title = formData.get("")
-        const title = formData.get("")
+        const title = formData.get("title")
+        const content = formData.get("content")
+
+        
 
     } catch (error) {
         if (error instanceof Error) {
