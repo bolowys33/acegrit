@@ -13,8 +13,9 @@ interface DecodedToken {
 
 export async function middleware(request: NextRequest) {
     if (
-        request.nextUrl.pathname === "/api/attorney" &&
-        request.method === "GET"
+       ( request.nextUrl.pathname === "/api/attorney" &&
+        request.method === "GET") ||  ( request.nextUrl.pathname === "/api/posts" &&
+        request.method === "GET")
     ) {
         return NextResponse.next();
     }
