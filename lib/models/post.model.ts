@@ -13,6 +13,10 @@ const postSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
+    post_url: {
+        type: String,
+        required: [true, "URL is required"]
+    },
     date_created: {
         Date,
         default: Date.now(),
