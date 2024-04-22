@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 export async function GET(): Promise<Response> {
     try {
         await connectDB();
+
         const attorneys = await Attorney.find({}).select("-__v");
         if (attorneys.length === 0) {
             return NextResponse.json(
@@ -36,6 +37,7 @@ export async function GET(): Promise<Response> {
 export async function POST(req: Request): Promise<Response> {
     try {
         await connectDB();
+        
         const adminId = req.headers.get("X-Admin-ID");
         const adminUsername = req.headers.get("X-Admin-Username");
         const adminEmail = req.headers.get("X-Admin-Email");
