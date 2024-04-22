@@ -3,19 +3,14 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 import { JWSInvalid, JWTClaimValidationFailed, JWTExpired } from "jose/errors";
 
-interface DecodedToken {
-    id: string;
-    username: string;
-    email: string;
-    iat: number;
-    exp: number;
-}
-
 export async function middleware(request: NextRequest) {
     if (
-       ( request.nextUrl.pathname === "/api/attorney" &&
-        request.method === "GET") ||  ( request.nextUrl.pathname === "/api/posts" &&
-        request.method === "GET")
+        (request.nextUrl.pathname === "/api/attorney" &&
+            request.method === "GET") ||
+        (request.nextUrl.pathname === "/api/posts" &&
+            request.method === "GET") ||
+        (request.nextUrl.pathname.startsWith("/api/posts/") &&
+            request.method === "GET")
     ) {
         return NextResponse.next();
     }
@@ -37,9 +32,7 @@ export async function middleware(request: NextRequest) {
         );
         const response = NextResponse.next();
         response.headers.set("X-Admin-ID", decoded.payload.id as string);
-        response.headers.set(
-            "X-Admin-Username",
-            decoded.payload.username as string
+        response.headers.set("X-Admin-Username", decoded.payload.username as string
         );
         response.headers.set("X-Admin-Email", decoded.payload.email as string);
         return response;
@@ -75,5 +68,6 @@ export const config = {
         "/api/attorney/:path*",
         "/api/admin",
         "/api/posts",
+        "/api/posts/:path*",
     ],
 };
