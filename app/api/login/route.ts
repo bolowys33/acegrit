@@ -7,9 +7,8 @@ import connectDB from "@/lib/db";
 const secret = process.env.JWT_SECRET;
 
 export async function POST(request: Request): Promise<Response> {
-    await connectDB();
-    
     try {
+        await connectDB();
         const { username, password } = await request.json();
 
         if (!username || !password) {
