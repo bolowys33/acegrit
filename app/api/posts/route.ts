@@ -6,7 +6,7 @@ export async function GET(): Promise<Response> {
     try {
         await connectDB();
 
-        const posts = await Post.find({});
+        const posts = await Post.find({}).select('-__v');
         if (posts.length === 0) {
             return NextResponse.json(
                 { success: false, message: "No post found" },
@@ -69,8 +69,8 @@ export async function POST(req: Request): Promise<Response> {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "");
 
-        const post = new Post({title, content, post_url: postUrl})
-        await post.save()
+        const post = new Post({ title, content, post_url: postUrl });
+        await post.save();
 
         return NextResponse.json(
             {

@@ -15,10 +15,10 @@ const postSchema = new Schema({
     },
     post_url: {
         type: String,
-        required: [true, "URL is required"]
+        required: [true, "URL is required"],
     },
     date_created: {
-        Date,
+        type: Date,
         default: Date.now(),
     },
 });
