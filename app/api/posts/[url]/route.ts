@@ -136,8 +136,40 @@ export async function DELETE(
     { params }: { params: { url: string } }
 ): Promise<Response> {
     try {
-       await connectDB()
-        
+        await connectDB();
+
+        const { url } = params;
+        if (!url)
+            return NextResponse.json(
+                { success: false, message: "Please provide post URL" },
+                { status: 400 }
+            );
+
+        const adminId = req.headers.get("X-Admin-ID");
+        const adminUsername = req.headers.get("X-Admin-Username");
+        const adminEmail = req.headers.get("X-Admin-Email");
+        if (!adminId || !adminUsername || !adminEmail) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 401 }
+            );
+        }
+
+        const deletedPost = await Post.deleteOne({ post_url: url });
+        if (!deletedPost) {
+            return NextResponse.json(
+                { success: false, message: "Post not found" },
+                { status: 404 }
+            );
+        }
+
+        return NextResponse.json(
+            { success: true, message: "Post deleted successfully" },
+            { status: 200 }
+        );
     } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json(
