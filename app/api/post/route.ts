@@ -51,7 +51,9 @@ export async function POST(req: Request): Promise<Response> {
         }
 
         const formData = await req.formData()
-        const title = formData.
+        const title = formData.get("")
+        const title = formData.get("")
+        const title = formData.get("")
 
     } catch (error) {
         if (error instanceof Error) {
