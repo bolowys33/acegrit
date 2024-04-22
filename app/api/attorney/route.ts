@@ -4,8 +4,8 @@ import Attorney from "@/lib/models/attorney.model";
 import { NextResponse } from "next/server";
 
 export async function GET(): Promise<Response> {
-    await connectDB();
     try {
+        await connectDB();
         const attorneys = await Attorney.find({}).select("-__v");
         if (attorneys.length === 0) {
             return NextResponse.json(
