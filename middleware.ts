@@ -3,19 +3,11 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 import { JWSInvalid, JWTClaimValidationFailed, JWTExpired } from "jose/errors";
 
-interface DecodedToken {
-    id: string;
-    username: string;
-    email: string;
-    iat: number;
-    exp: number;
-}
-
 export async function middleware(request: NextRequest) {
     if (
-       ( request.nextUrl.pathname === "/api/attorney" &&
-        request.method === "GET") ||  ( request.nextUrl.pathname === "/api/posts" &&
-        request.method === "GET")
+        (request.nextUrl.pathname === "/api/attorney" &&
+            request.method === "GET") ||
+        (request.nextUrl.pathname === "/api/posts" && request.method === "GET")
     ) {
         return NextResponse.next();
     }
