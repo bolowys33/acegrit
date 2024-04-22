@@ -50,12 +50,19 @@ export async function POST(req: Request): Promise<Response> {
             );
         }
 
-        const formData = await req.formData()
-        const title = formData.get("title")
-        const content = formData.get("content")
+        const formData = await req.formData();
+        const title = formData.get("title");
+        const content = formData.get("content");
 
-        
-
+        if (!title || !content) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Please provide all required fields",
+                },
+                { status: 400 }
+            );
+        }
     } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json(
