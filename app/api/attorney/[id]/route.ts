@@ -1,5 +1,5 @@
 import connectDB from "@/lib/db";
-import uploadImage from "@/lib/image-upload";
+import uploadImage, { deleteImage } from "@/lib/image-upload";
 import Attorney from "@/lib/models/attorney.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -87,8 +87,12 @@ export async function PUT(
             const fileUri =
                 "data:" + mimeType + ";" + encoding + "," + base64Data;
 
-            const imagePath = await uploadImage(fileUri);
-            attorney.image = imagePath;
+            const imageId = attorney.image_id
+            await deleteImage(imageId, "updating")
+                
+            const {imageUrl, publicId }= await uploadImage(fileUri);
+            attorney.image_url = imageUrl;
+            attorney.image_id = publicId
         }
 
         const updatedAttorney = await attorney.save();
@@ -159,6 +163,9 @@ export async function DELETE(
                 { status: 404 }
             );
         }
+
+        const publicId = attorney.image_id
+        await deleteImage(publicId, "deleting")
 
         return NextResponse.json(
             { success: true, message: "Attorney deleted successfully" },

@@ -13,6 +13,7 @@ async function connectDB() {
         console.log("Connected to DB 🚀🚀🚀🚀🌎");
     } catch (error) {
         console.error("Error connecting to DB", error);
+        throw new Error(`Error connecting to database, check your internet`)
     }
 }
 
