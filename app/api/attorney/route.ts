@@ -20,7 +20,6 @@ export async function GET(): Promise<Response> {
         );
     } catch (error) {
         if (error instanceof Error) {
-            console.log(error)
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }

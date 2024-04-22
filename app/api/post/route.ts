@@ -18,5 +18,17 @@ export async function GET(): Promise<Response> {
             { success: true, data: posts },
             { status: 200 }
         );
-    } catch (error) {}
+    } catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
+    }
 }
