@@ -7,8 +7,8 @@ export async function PUT(
     req: Request,
     { params }: { params: { id: string } }
 ): Promise<Response> {
-    await connectDB();
     try {
+        await connectDB();
         const { id } = params;
         if (!id)
             return NextResponse.json(
@@ -87,12 +87,12 @@ export async function PUT(
             const fileUri =
                 "data:" + mimeType + ";" + encoding + "," + base64Data;
 
-            const imageId = attorney.image_id
-            await deleteImage(imageId, "updating")
-                
-            const {imageUrl, publicId }= await uploadImage(fileUri);
+            const imageId = attorney.image_id;
+            await deleteImage(imageId, "updating");
+
+            const { imageUrl, publicId } = await uploadImage(fileUri);
             attorney.image_url = imageUrl;
-            attorney.image_id = publicId
+            attorney.image_id = publicId;
         }
 
         const updatedAttorney = await attorney.save();
@@ -115,7 +115,7 @@ export async function PUT(
                     },
                     { status: 400 }
                 );
-                
+
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
@@ -133,9 +133,8 @@ export async function DELETE(
     req: Request,
     { params }: { params: { id: string } }
 ): Promise<Response> {
-    await connectDB();
-
     try {
+        await connectDB();
         const { id } = params;
         if (!id)
             return NextResponse.json(
@@ -164,8 +163,8 @@ export async function DELETE(
             );
         }
 
-        const publicId = attorney.image_id
-        await deleteImage(publicId, "deleting")
+        const publicId = attorney.image_id;
+        await deleteImage(publicId, "deleting");
 
         return NextResponse.json(
             { success: true, message: "Attorney deleted successfully" },
