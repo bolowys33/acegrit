@@ -158,14 +158,25 @@ export async function DELETE(
             );
         }
 
-        const deletedPost = await Post.deleteOne({ post_url: url });
-        if (!deletedPost) {
+        const post = await Post.findOne({ post_url: url });
+        if (!post) {
             return NextResponse.json(
                 { success: false, message: "Post not found" },
                 { status: 404 }
             );
         }
 
+        if (post._id === adminId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "You are not the author of this post",
+                },
+                { status: 401 }
+            );
+        }
+
+        await Post.deleteOne({ post_url: url });
         return NextResponse.json(
             { success: true, message: "Post deleted successfully" },
             { status: 200 }
