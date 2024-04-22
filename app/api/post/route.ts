@@ -64,7 +64,22 @@ export async function POST(req: Request): Promise<Response> {
             );
         }
 
-        const postUrl = title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+        const postUrl = title
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+        const post = new Post({title, content, post_url: postUrl})
+        await post.save()
+
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Post added successfully",
+                data: post,
+            },
+            { status: 201 }
+        );
     } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json(
