@@ -76,6 +76,22 @@ export async function PUT(
             .replace(/^-+|-+$/g, "");
 
         const post = await Post.findOne({ post_url: url });
+        if (!post) {
+            return NextResponse.json(
+                { success: false, message: "Post not found" },
+                { status: 404 }
+            );
+        }
+
+        if (post._id === adminId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "You are not the author of this post",
+                },
+                { status: 401 }
+            );
+        }
 
         post.title = title || post.title;
         post.content = content || post.content;
