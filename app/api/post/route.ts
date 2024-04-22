@@ -51,8 +51,8 @@ export async function POST(req: Request): Promise<Response> {
         }
 
         const formData = await req.formData();
-        const title = formData.get("title");
-        const content = formData.get("content");
+        const title = formData.get("title") as string;
+        const content = formData.get("content") as string;
 
         if (!title || !content) {
             return NextResponse.json(
@@ -63,6 +63,8 @@ export async function POST(req: Request): Promise<Response> {
                 { status: 400 }
             );
         }
+
+        const postUrl = title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
     } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json(
