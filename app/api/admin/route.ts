@@ -67,3 +67,23 @@ export async function POST(request: Request): Promise<Response> {
         }
     }
 }
+
+export async function GET(req: Request): Promise<Response> {
+    try {
+        await connectDB()
+
+        
+    } catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
+    }
+}
