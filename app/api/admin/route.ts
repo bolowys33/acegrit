@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/db";
 import Admin from "@/lib/models/admin.model";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: Request): Promise<Response> {
     try {
@@ -260,7 +261,7 @@ export async function PATCH(req: Request): Promise<Response> {
         }
 
         // Verify current password
-        const isPasswordValid = await admin.validatePassword(currentPassword);
+        const isPasswordValid = await bcrypt.compare(currentPassword, admin.password);
         if (!isPasswordValid) {
             return NextResponse.json(
                 {
@@ -272,7 +273,7 @@ export async function PATCH(req: Request): Promise<Response> {
         }
 
         // Update password
-        admin.password = await admin.hashPassword(newPassword);
+        admin.password = newPassword
         await admin.save();
 
         return NextResponse.json(
@@ -283,6 +284,25 @@ export async function PATCH(req: Request): Promise<Response> {
             { status: 200 }
         );
     } catch (error) {
-        // Handle errors
+        if (error instanceof Error) {
+            if (error.message === "Error: Unexpected end of form")
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Please provide all required fields",
+                    },
+                    { status: 400 }
+                );
+
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
     }
 }
