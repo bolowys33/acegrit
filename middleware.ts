@@ -34,11 +34,7 @@ export async function middleware(request: NextRequest) {
         );
         const response = NextResponse.next();
         response.headers.set("X-Admin-ID", decoded.payload.id as string);
-        response.headers.set(
-            "X-Admin-Username",
-            decoded.payload.username as string
-        );
-        response.headers.set("X-Admin-Email", decoded.payload.email as string);
+    
         return response;
     } catch (error) {
         if (error instanceof JWTExpired) {
