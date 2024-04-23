@@ -153,7 +153,6 @@ export async function PUT(req: Request): Promise<Response> {
 
         const formData = await req.formData();
         const username = formData.get("username") as string;
-        const password = formData.get("password") as string;
         const email = formData.get("email") as string;
         const firstname = formData.get("firstname") as string;
         const lastname = formData.get("lastname") as string;
@@ -194,7 +193,6 @@ export async function PUT(req: Request): Promise<Response> {
 
         admin.email = email || admin.email;
         admin.username = username || admin.username;
-        admin.password = password || admin.password;
         admin.firstname = firstname || admin.firstname;
         admin.lastname = lastname || admin.lastname;
 
@@ -261,7 +259,10 @@ export async function PATCH(req: Request): Promise<Response> {
         }
 
         // Verify current password
-        const isPasswordValid = await bcrypt.compare(currentPassword, admin.password);
+        const isPasswordValid = await bcrypt.compare(
+            currentPassword,
+            admin.password
+        );
         if (!isPasswordValid) {
             return NextResponse.json(
                 {
@@ -273,7 +274,7 @@ export async function PATCH(req: Request): Promise<Response> {
         }
 
         // Update password
-        admin.password = newPassword
+        admin.password = newPassword;
         await admin.save();
 
         return NextResponse.json(
@@ -294,6 +295,54 @@ export async function PATCH(req: Request): Promise<Response> {
                     { status: 400 }
                 );
 
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
+    }
+}
+
+export async function DELETE(req: Request): Promise<Response> {
+    try {
+        await connectDB();
+
+        const adminId = req.headers.get("X-Admin-ID");
+        if (!adminId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 401 }
+            );
+        }
+
+        const admin = await Admin.findByIdAndDelete(adminId);
+        if (!admin) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Admin not found.",
+                },
+                { status: 404 }
+            );
+        }
+
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Admin deleted successfully",
+            },
+            { status: 200 }
+        );
+    } catch (error) {
+        if (error instanceof Error) {
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
