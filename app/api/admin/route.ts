@@ -48,7 +48,7 @@ export async function POST(request: Request): Promise<Response> {
             }
         }
 
-        const admin = new Admin({ username, password, email });
+        const admin = new Admin({ username, password, email, firstname, lastname });
         await admin.save();
 
         return NextResponse.json(
