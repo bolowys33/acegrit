@@ -104,6 +104,15 @@ export async function GET(req: Request): Promise<Response> {
         }
 
         const admin = await Admin.findById(adminId).select("-__v password");
+        if (!admin) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 404 }
+            );
+        }
         return NextResponse.json(
             {
                 success: true,
@@ -126,4 +135,49 @@ export async function GET(req: Request): Promise<Response> {
     }
 }
 
-export async function PUT(req: Request): Promise<Response> {}
+export async function PUT(req: Request): Promise<Response> {
+    try {
+        await connectDB();
+
+        const adminId = req.headers.get("X-Admin-ID");
+        if (!adminId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 401 }
+            );
+        }
+
+        const formData = await req.formData();
+        const username = formData.get("username") as string;
+        const password = formData.get("password");
+        const email = formData.get("email") as string;
+        const firstname = formData.get("firstname");
+        const lastname = formData.get("lastname");
+
+        const admin = Admin.findById(adminId);
+    } catch (error) {
+        if (error instanceof Error) {
+            if (error.message === "Error: Unexpected end of form")
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Please provide all required fields",
+                    },
+                    { status: 400 }
+                );
+
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
+    }
+}
