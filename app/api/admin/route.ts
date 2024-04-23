@@ -108,7 +108,7 @@ export async function GET(req: Request): Promise<Response> {
             return NextResponse.json(
                 {
                     success: false,
-                    message: "Unauthorized. Please log in.",
+                    message: "Admin not found.",
                 },
                 { status: 404 }
             );
@@ -163,11 +163,26 @@ export async function PUT(req: Request): Promise<Response> {
             return NextResponse.json(
                 {
                     success: false,
-                    message: "Unauthorized. Please log in.",
+                    message: "Admin not found.",
                 },
                 { status: 404 }
             );
         }
+
+        admin.email = email || admin.email;
+        admin.username = username || admin.username;
+        admin.password = password || admin.password;
+        admin.firstname = firstname || admin.firstname;
+        admin.lastname = lastname || admin.lastname;
+
+        await admin.save();
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Admin updated successfully",
+            },
+            { status: 200 }
+        );
     } catch (error) {
         if (error instanceof Error) {
             if (error.message === "Error: Unexpected end of form")
