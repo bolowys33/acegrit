@@ -9,8 +9,11 @@ const secret = process.env.JWT_SECRET;
 export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
-        
-        const { username, password } = await request.json();
+
+        // const { username, password } = await request.json();
+        const formData = await request.formData();
+        const username = formData.get("username");
+        const password = formData.get("password") as string;
 
         if (!username || !password) {
             return NextResponse.json(
@@ -50,6 +53,15 @@ export async function POST(request: Request): Promise<Response> {
         );
     } catch (error) {
         if (error instanceof Error) {
+            if (error.message === "Error: Unexpected end of form")
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Please provide all required fields",
+                    },
+                    { status: 400 }
+                );
+
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
