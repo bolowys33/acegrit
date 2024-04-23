@@ -12,7 +12,6 @@ async function connectDB() {
         await mongoose.connect(url, { dbName: "Ace", bufferCommands: false });
         console.log("Connected to DB 🚀🚀🚀🚀🌎");
     } catch (error) {
-        console.error("Error connecting to DB", error);
         throw new Error(`Error connecting to database, check your internet`)
     }
 }
