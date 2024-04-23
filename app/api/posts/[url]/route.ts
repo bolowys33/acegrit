@@ -57,9 +57,7 @@ export async function PUT(
             );
 
         const adminId = req.headers.get("X-Admin-ID");
-        const adminUsername = req.headers.get("X-Admin-Username");
-        const adminEmail = req.headers.get("X-Admin-Email");
-        if (!adminId || !adminUsername || !adminEmail) {
+        if (!adminId) {
             return NextResponse.json(
                 {
                     success: false,
@@ -148,9 +146,7 @@ export async function DELETE(
             );
 
         const adminId = req.headers.get("X-Admin-ID");
-        const adminUsername = req.headers.get("X-Admin-Username");
-        const adminEmail = req.headers.get("X-Admin-Email");
-        if (!adminId || !adminUsername || !adminEmail) {
+        if (!adminId) {
             return NextResponse.json(
                 {
                     success: false,

@@ -37,10 +37,8 @@ export async function POST(req: Request): Promise<Response> {
     try {
         await connectDB();
 
-        const adminId = req.headers.get("X-Admin-ID");
-        const adminUsername = req.headers.get("X-Admin-Username");
-        const adminEmail = req.headers.get("X-Admin-Email");
-        if (!adminId || !adminUsername || !adminEmail) {
+        const adminId = req.headers.get("X-Admin-ID")
+        if (!adminId) {
             return NextResponse.json(
                 {
                     success: false,
