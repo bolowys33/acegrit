@@ -20,6 +20,16 @@ const adminSchema = new Schema({
         unique: true,
         required: [true, "Email is required"],
     },
+    firstname: {
+        type: String,
+        unique: true,
+        required: [true, "Firstname is required"],
+    },
+    lastname: {
+        type: String,
+        unique: true,
+        required: [true, "LastName is required"],
+    },
 });
 
 adminSchema.pre("save", async function (next) {
