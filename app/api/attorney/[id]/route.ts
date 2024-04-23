@@ -17,10 +17,8 @@ export async function PUT(
                 { status: 400 }
             );
 
-        const adminId = req.headers.get("X-Admin-ID");
-        const adminUsername = req.headers.get("X-Admin-Username");
-        const adminEmail = req.headers.get("X-Admin-Email");
-        if (!adminId || !adminUsername || !adminEmail) {
+        const adminId = req.headers.get("X-Admin-ID")
+        if (!adminId) {
             return NextResponse.json(
                 {
                     success: false,
@@ -144,10 +142,8 @@ export async function DELETE(
                 { status: 400 }
             );
 
-        const adminId = req.headers.get("X-Admin-ID");
-        const adminUsername = req.headers.get("X-Admin-Username");
-        const adminEmail = req.headers.get("X-Admin-Email");
-        if (!adminId || !adminUsername || !adminEmail) {
+        const adminId = req.headers.get("X-Admin-ID")
+        if (!adminId) {
             return NextResponse.json(
                 {
                     success: false,
