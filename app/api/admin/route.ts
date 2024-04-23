@@ -228,3 +228,61 @@ export async function PUT(req: Request): Promise<Response> {
         }
     }
 }
+
+export async function PATCH(req: Request): Promise<Response> {
+    try {
+        await connectDB();
+
+        const adminId = req.headers.get("X-Admin-ID");
+        if (!adminId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 401 }
+            );
+        }
+
+        const formData = await req.formData();
+        const currentPassword = formData.get("currentPassword") as string;
+        const newPassword = formData.get("newPassword") as string;
+
+        const admin = await Admin.findById(adminId);
+        if (!admin) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Admin not found.",
+                },
+                { status: 404 }
+            );
+        }
+
+        // Verify current password
+        const isPasswordValid = await admin.validatePassword(currentPassword);
+        if (!isPasswordValid) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Invalid current password.",
+                },
+                { status: 400 }
+            );
+        }
+
+        // Update password
+        admin.password = await admin.hashPassword(newPassword);
+        await admin.save();
+
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Password updated successfully.",
+            },
+            { status: 200 }
+        );
+    } catch (error) {
+        // Handle errors
+    }
+}
