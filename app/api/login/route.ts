@@ -10,7 +10,6 @@ export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
 
-
         const formData = await request.formData();
         const username = formData.get("username") as string;
         const password = formData.get("password") as string;
@@ -44,6 +43,8 @@ export async function POST(request: Request): Promise<Response> {
             id: admin._id,
             username: admin.username,
             email: admin.email,
+            firstname: admin.firstname,
+            lastname: admin.lastname,
         };
         const token = jwt.sign(payload, secret as string, { expiresIn: "2h" });
 
