@@ -26,7 +26,6 @@ export async function POST(request: Request): Promise<Response> {
         const existingAdmin = await Admin.findOne({
             $or: [{ email }, { username }],
         });
-
         if (existingAdmin) {
             if (existingAdmin.email === email) {
                 return NextResponse.json(
@@ -153,12 +152,35 @@ export async function PUT(req: Request): Promise<Response> {
 
         const formData = await req.formData();
         const username = formData.get("username") as string;
-        const password = formData.get("password");
+        const password = formData.get("password") as string;
         const email = formData.get("email") as string;
-        const firstname = formData.get("firstname");
-        const lastname = formData.get("lastname");
+        const firstname = formData.get("firstname") as string;
+        const lastname = formData.get("lastname") as string;
 
-        const admin = Admin.findById(adminId);
+        const existingAdmin = await Admin.findOne({
+            $or: [{ email }, { username }],
+        });
+        if (existingAdmin) {
+            if (existingAdmin.email === email) {
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Admin with email address already exists",
+                    },
+                    { status: 400 }
+                );
+            } else {
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Admin with username already exists",
+                    },
+                    { status: 400 }
+                );
+            }
+        }
+
+        const admin = await Admin.findById(adminId);
         if (!admin) {
             return NextResponse.json(
                 {
