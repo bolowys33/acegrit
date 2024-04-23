@@ -6,12 +6,12 @@ export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
 
-        const formData = await request.formData()
-        const username = formData.get("username")
-        const password = formData.get("password")
-        const email = formData.get("email")
-        const firstname = formData.get("firstname")
-        const lastname = formData.get("lastname")
+        const formData = await request.formData();
+        const username = formData.get("username");
+        const password = formData.get("password");
+        const email = formData.get("email");
+        const firstname = formData.get("firstname");
+        const lastname = formData.get("lastname");
 
         if (!username || !password || !email || !firstname || !lastname) {
             return NextResponse.json(
@@ -47,7 +47,13 @@ export async function POST(request: Request): Promise<Response> {
             }
         }
 
-        const admin = new Admin({ username, password, email, firstname, lastname });
+        const admin = new Admin({
+            username,
+            password,
+            email,
+            firstname,
+            lastname,
+        });
         await admin.save();
 
         return NextResponse.json(
@@ -64,7 +70,7 @@ export async function POST(request: Request): Promise<Response> {
                 return NextResponse.json(
                     {
                         success: false,
-                        message: "Provide at least one field for update",
+                        message: "Please provide all required fields",
                     },
                     { status: 400 }
                 );
@@ -84,7 +90,7 @@ export async function POST(request: Request): Promise<Response> {
 
 export async function GET(req: Request): Promise<Response> {
     try {
-        await connectDB()
+        await connectDB();
 
         const adminId = req.headers.get("X-Admin-ID");
         const adminUsername = req.headers.get("X-Admin-Username");
@@ -102,7 +108,7 @@ export async function GET(req: Request): Promise<Response> {
         return NextResponse.json(
             {
                 success: true,
-                data: {username: adminUsername, email:adminEmail},
+                data: { username: adminUsername, email: adminEmail },
             },
             { status: 200 }
         );

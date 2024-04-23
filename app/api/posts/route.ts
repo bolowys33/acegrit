@@ -6,7 +6,7 @@ export async function GET(): Promise<Response> {
     try {
         await connectDB();
 
-        const posts = await Post.find({}).select('-__v');
+        const posts = await Post.find({}).select("-__v");
         if (posts.length === 0) {
             return NextResponse.json(
                 { success: false, message: "No post found" },
@@ -82,6 +82,15 @@ export async function POST(req: Request): Promise<Response> {
         );
     } catch (error) {
         if (error instanceof Error) {
+            if (error.message === "Error: Unexpected end of form")
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Please provide all required fields",
+                    },
+                    { status: 400 }
+                );
+
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
