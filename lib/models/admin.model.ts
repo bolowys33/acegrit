@@ -44,6 +44,6 @@ adminSchema.pre("save", async function (next) {
     }
 });
 
-const Admin = models.Admin || model("Admin", adminSchema);
+const Admin = model("Admin", adminSchema);
 
 export default Admin;

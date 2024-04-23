@@ -69,7 +69,12 @@ export async function POST(req: Request): Promise<Response> {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "");
 
-        const post = new Post({ title, content, post_url: postUrl });
+        const post = new Post({
+            title,
+            content,
+            post_url: postUrl,
+            author: adminId,
+        });
         await post.save();
 
         return NextResponse.json(
