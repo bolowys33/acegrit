@@ -10,9 +10,9 @@ export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
 
-        // const { username, password } = await request.json();
+
         const formData = await request.formData();
-        const username = formData.get("username");
+        const username = formData.get("username") as string;
         const password = formData.get("password") as string;
 
         if (!username || !password) {
