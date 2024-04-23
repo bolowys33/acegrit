@@ -113,6 +113,7 @@ export async function GET(req: Request): Promise<Response> {
                 { status: 404 }
             );
         }
+
         return NextResponse.json(
             {
                 success: true,
@@ -158,6 +159,15 @@ export async function PUT(req: Request): Promise<Response> {
         const lastname = formData.get("lastname");
 
         const admin = Admin.findById(adminId);
+        if (!admin) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 404 }
+            );
+        }
     } catch (error) {
         if (error instanceof Error) {
             if (error.message === "Error: Unexpected end of form")
