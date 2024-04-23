@@ -7,9 +7,9 @@ export async function POST(request: Request): Promise<Response> {
         await connectDB();
 
         const formData = await request.formData();
-        const username = formData.get("username");
+        const username = formData.get("username") as string;
         const password = formData.get("password");
-        const email = formData.get("email");
+        const email = formData.get("email") as string;
         const firstname = formData.get("firstname");
         const lastname = formData.get("lastname");
 
@@ -105,10 +105,11 @@ export async function GET(req: Request): Promise<Response> {
             );
         }
 
+        const admin = await Admin.findById(adminId).select("-__v password");
         return NextResponse.json(
             {
                 success: true,
-                data: { username: adminUsername, email: adminEmail },
+                data: admin,
             },
             { status: 200 }
         );
