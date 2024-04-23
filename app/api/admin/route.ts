@@ -5,14 +5,13 @@ import Admin from "@/lib/models/admin.model";
 export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
-        
-        // const { username, password, email } = await request.json();
-        const formData = await request.formData()
-        const username = formData.get("username")
-        const password = formData.get("password")
-        const email = formData.get("email")
-        const firstname = formData.get("firstname")
-        const lastname = formData.get("lastname")
+
+        const formData = await request.formData();
+        const username = formData.get("username");
+        const password = formData.get("password");
+        const email = formData.get("email");
+        const firstname = formData.get("firstname");
+        const lastname = formData.get("lastname");
 
         if (!username || !password || !email || !firstname || !lastname) {
             return NextResponse.json(
@@ -48,7 +47,13 @@ export async function POST(request: Request): Promise<Response> {
             }
         }
 
-        const admin = new Admin({ username, password, email, firstname, lastname });
+        const admin = new Admin({
+            username,
+            password,
+            email,
+            firstname,
+            lastname,
+        });
         await admin.save();
 
         return NextResponse.json(
@@ -61,6 +66,15 @@ export async function POST(request: Request): Promise<Response> {
         );
     } catch (error) {
         if (error instanceof Error) {
+            if (error.message === "Error: Unexpected end of form")
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Please provide all required fields",
+                    },
+                    { status: 400 }
+                );
+
             return NextResponse.json(
                 { success: false, message: error.message },
                 { status: 400 }
@@ -76,7 +90,7 @@ export async function POST(request: Request): Promise<Response> {
 
 export async function GET(req: Request): Promise<Response> {
     try {
-        await connectDB()
+        await connectDB();
 
         const adminId = req.headers.get("X-Admin-ID");
         const adminUsername = req.headers.get("X-Admin-Username");
@@ -94,7 +108,7 @@ export async function GET(req: Request): Promise<Response> {
         return NextResponse.json(
             {
                 success: true,
-                data: {username: adminUsername, email:adminEmail},
+                data: { username: adminUsername, email: adminEmail },
             },
             { status: 200 }
         );
