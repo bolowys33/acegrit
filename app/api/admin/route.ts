@@ -6,9 +6,15 @@ export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
         
-        const { username, password, email } = await request.json();
+        // const { username, password, email } = await request.json();
+        const formData = await request.formData()
+        const username = formData.get("username")
+        const password = formData.get("password")
+        const email = formData.get("email")
+        const firstname = formData.get("firstname")
+        const lastname = formData.get("lastname")
 
-        if (!username || !password || !email) {
+        if (!username || !password || !email || !firstname || !lastname) {
             return NextResponse.json(
                 {
                     success: false,
