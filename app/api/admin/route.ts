@@ -6,9 +6,15 @@ export async function POST(request: Request): Promise<Response> {
     try {
         await connectDB();
         
-        const { username, password, email } = await request.json();
+        // const { username, password, email } = await request.json();
+        const formData = await request.formData()
+        const username = formData.get("username")
+        const password = formData.get("password")
+        const email = formData.get("email")
+        const firstname = formData.get("firstname")
+        const lastname = formData.get("lastname")
 
-        if (!username || !password || !email) {
+        if (!username || !password || !email || !firstname || !lastname) {
             return NextResponse.json(
                 {
                     success: false,
@@ -42,7 +48,7 @@ export async function POST(request: Request): Promise<Response> {
             }
         }
 
-        const admin = new Admin({ username, password, email });
+        const admin = new Admin({ username, password, email, firstname, lastname });
         await admin.save();
 
         return NextResponse.json(
@@ -52,6 +58,45 @@ export async function POST(request: Request): Promise<Response> {
                 data: admin,
             },
             { status: 201 }
+        );
+    } catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { success: false, message: error.message },
+                { status: 400 }
+            );
+        } else {
+            return NextResponse.json(
+                { success: false, message: "An unknown error occurred" },
+                { status: 500 }
+            );
+        }
+    }
+}
+
+export async function GET(req: Request): Promise<Response> {
+    try {
+        await connectDB()
+
+        const adminId = req.headers.get("X-Admin-ID");
+        const adminUsername = req.headers.get("X-Admin-Username");
+        const adminEmail = req.headers.get("X-Admin-Email");
+        if (!adminId || !adminUsername || !adminEmail) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized. Please log in.",
+                },
+                { status: 401 }
+            );
+        }
+
+        return NextResponse.json(
+            {
+                success: true,
+                data: {username: adminUsername, email:adminEmail},
+            },
+            { status: 200 }
         );
     } catch (error) {
         if (error instanceof Error) {
