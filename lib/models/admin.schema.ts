@@ -1,4 +1,4 @@
-import { CallbackError, Schema, model, models } from "mongoose";
+import { CallbackError, Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 
 export const adminSchema = new Schema({
