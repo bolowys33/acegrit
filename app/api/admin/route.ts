@@ -103,7 +103,7 @@ export async function GET(req: Request): Promise<Response> {
             );
         }
 
-        const admin = await Admin.findById(adminId).select("-__v password");
+        const admin = await Admin.findById(adminId).select("-__v -password");
         if (!admin) {
             return NextResponse.json(
                 {
