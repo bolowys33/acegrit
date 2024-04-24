@@ -1,7 +1,7 @@
 import { CallbackError, Schema, model, models } from "mongoose";
 import bcrypt from "bcryptjs";
 
-const adminSchema = new Schema({
+export const adminSchema = new Schema({
     username: {
         type: String,
         unique: true,
@@ -43,7 +43,3 @@ adminSchema.pre("save", async function (next) {
         return next(error as CallbackError);
     }
 });
-
-const Admin = model("Admin", adminSchema);
-
-export default Admin;
