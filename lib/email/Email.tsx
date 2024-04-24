@@ -1,9 +1,9 @@
-// EmailTemplate.js
+
 import React from "react";
 
 interface TemplateProps {
     user: {
-        firstname: string;
+        name: string;
         email: string;
     };
     token: string;
@@ -85,7 +85,7 @@ const EmailTemplate: React.FC<TemplateProps> = ({ user, token }) => {
                             Password Change Request!
                         </h1>
                         <p className="email-message">
-                            Hello {user.firstname},
+                            Hello {user.name},
                         </p>
                         <p className="email-message">
                             We noticed you requested to change your password. If
