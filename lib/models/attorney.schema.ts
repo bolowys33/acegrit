@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import { Schema } from "mongoose";
 
-const attorneySchema = new Schema({
+export const attorneySchema = new Schema({
     name: {
         type: String,
         required: [true, "Attorney name is required"],
@@ -17,7 +17,3 @@ const attorneySchema = new Schema({
         type: String,
     },
 });
-
-const Attorney = models.Attorney || model("Attorney", attorneySchema);
-
-export default Attorney;

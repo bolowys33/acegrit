@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import { Schema } from "mongoose";
 
-const postSchema = new Schema({
+export const postSchema = new Schema({
     title: {
         type: String,
         required: [true, "Post title is required"],
@@ -22,7 +22,3 @@ const postSchema = new Schema({
         default: Date.now(),
     },
 });
-
-const Post = models.Post || model("Post", postSchema);
-
-export default Post;
