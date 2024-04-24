@@ -9,4 +9,4 @@ const Attorney = models.Attorney || model("Attorney", attorneySchema);
 const Post = models.Post || model("Post", postSchema);
 const Token = models.Token || model("Token", tokenSchema);
 
-export { Admin, Attorney, Post };
+export { Admin, Attorney, Post, Token };
