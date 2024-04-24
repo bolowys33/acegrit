@@ -1,6 +1,6 @@
 import connectDB from "@/lib/db";
 import uploadImage, { deleteImage } from "@/lib/image-upload";
-import Attorney from "@/lib/models/attorney.model";
+import { Attorney } from "@/lib/models/model";
 import { NextResponse } from "next/server";
 
 export async function PUT(
