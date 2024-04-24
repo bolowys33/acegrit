@@ -5,12 +5,16 @@ export const tokenSchema = new Schema({
         type: String,
         required: true,
     },
+    email: {
+        type: String,
+        required: true,
+    },
     admin_id: {
         type: Schema.Types.ObjectId,
         ref: "Admin",
         required: true,
     },
-    expTime: {
+    expires: {
         type: Date,
         required: true,
         default: Date.now() + 300000,

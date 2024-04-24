@@ -5,7 +5,7 @@ import React from "react";
 
 interface Admin {
     email: string;
-    firstname: string;
+    name: string;
 }
 
 const transporter = nodemailer.createTransport({
@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 
 export async function sendMail(admin: Admin, token: string) {
     try {
-        const user = { name: admin.firstname, email: admin.email };
+        const user = { name: admin.name, email: admin.email };
 
         const html = renderToString(
             React.createElement(EmailTemplate, { user, token })
@@ -32,7 +32,7 @@ export async function sendMail(admin: Admin, token: string) {
         };
 
         const result = await transporter.sendMail(mailOption);
-        console.log(result.accepted);
+        console.log(result.response);
     } catch (error) {
         throw new Error("Error sending recovery email");
     }

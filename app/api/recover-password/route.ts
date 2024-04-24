@@ -1,5 +1,6 @@
 import connectDB from "@/lib/db";
 import { generateToken } from "@/lib/email/generateToken";
+import { sendMail } from "@/lib/email/sendMail";
 import { Admin, Token } from "@/lib/models/model";
 import { NextResponse } from "next/server";
 
@@ -27,12 +28,33 @@ export async function POST(req: Request): Promise<Response> {
             );
         }
 
+        const adminToken = await Token.findOne({email})
+        if (adminToken) {
+            adminToken.token = generateToken()
+            adminToken.expires = Date.now() + 300000
+
+            await adminToken.save()
+
+            await sendMail({name: admin.firstname, email }, adminToken.token)
+
+            return NextResponse.json(
+                {
+                    success: true,
+                    message: "Token sent to email, expires in 5mins",
+                },
+                { status: 200 }
+            );
+        }
+
         const recoverToken = new Token({
             token: generateToken(),
             admin_id: admin._id,
+            email
         });
 
         await recoverToken.save();
+
+        await sendMail({name: admin.firstname, email }, recoverToken.token)
 
         return NextResponse.json(
             {
