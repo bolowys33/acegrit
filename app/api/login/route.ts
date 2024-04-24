@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Admin from "@/lib/models/admin.model";
+import Admin from "@/lib/models/admin.schema";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import connectDB from "@/lib/db";
