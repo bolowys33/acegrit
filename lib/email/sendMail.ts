@@ -10,12 +10,14 @@ interface Admin {
 }
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: 'smtp.gmail.com', // Gmail SMTP server
+    port: 465, // Gmail SMTP port for SSL/TLS
+    secure: true, // use SSL/TLS
     auth: {
-        user: process.env.AUTH_EMAIL,
-        pass: process.env.NODEMAILER_PASS,
+      user: process.env.AUTH_EMAIL, // your Gmail email address
+      pass: process.env.NODEMAILER_PASS, // the App Password you generated
     },
-});
+  });
 
 export async function sendMail(admin: Admin, token: string) {
     try {
