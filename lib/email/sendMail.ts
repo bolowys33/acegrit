@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-import { renderToString } from "react-dom/server";
 import { generateHtml } from "./generateHtml";
 
 interface Admin {
