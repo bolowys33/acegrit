@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import { renderToString } from "react-dom/server";
 import EmailTemplate from "./Email";
 import React from "react";
+import { generateHtml } from "./generateHtml";
 
 interface Admin {
     email: string;
@@ -20,9 +21,8 @@ export async function sendMail(admin: Admin, token: string) {
     try {
         const user = { name: admin.name, email: admin.email };
 
-        const html = renderToString(
-            React.createElement(EmailTemplate, { user, token })
-        );
+        const html = generateHtml(user, token);
+        console.log(html);
 
         const mailOption = {
             from: "Ace & Grit LP",
