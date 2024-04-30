@@ -22,12 +22,10 @@ export const adminSchema = new Schema({
     },
     firstname: {
         type: String,
-        unique: true,
         required: [true, "Firstname is required"],
     },
     lastname: {
         type: String,
-        unique: true,
         required: [true, "LastName is required"],
     },
 });
