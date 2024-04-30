@@ -1,7 +1,4 @@
 import nodemailer from "nodemailer";
-import { renderToString } from "react-dom/server";
-import EmailTemplate from "./Email";
-import React from "react";
 import { generateHtml } from "./generateHtml";
 
 interface Admin {
@@ -10,12 +7,12 @@ interface Admin {
 }
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com', // Gmail SMTP server
-    port: 465, // Gmail SMTP port for SSL/TLS
-    secure: true, // use SSL/TLS
+    host: 'smtp.gmail.com',
+    port: 465, 
+    secure: true, 
     auth: {
-      user: process.env.AUTH_EMAIL, // your Gmail email address
-      pass: process.env.NODEMAILER_PASS, // the App Password you generated
+      user: process.env.AUTH_EMAIL,
+      pass: process.env.NODEMAILER_PASS,
     },
   });
 

@@ -2,8 +2,6 @@ import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import { practiceAreas } from "@/constants/links";
 import { Container } from "@mui/material";
-import Image from "next/image";
-import Link from "next/link";
 import Social from "@/components/Social";
 import OtherAreas from "@/components/OtherAreas";
 
