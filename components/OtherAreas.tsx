@@ -30,7 +30,7 @@ const OtherAreas: FC<OtherAreasProps> = ({ area }) => {
                 <SectionTitle section=" other practice areas" />
                 <span className="text-2xl text-[#222261]">|</span>
             </div>
-            <div className="flex flex-col md:flex-row  gap-4 p-10 bg-zinc-200">
+            <div className="grid grid-cols-12 gap-4 p-10 bg-zinc-200">
                 {linkAreas.map((area, index) => (
                     <div
                         key={area.path}
