@@ -21,3 +21,5 @@ export const practiceAreas: NavLink[] = [
     { name: "Company Secretariat Duties", path: "/company-secretariat-duties" },
     { name: "Dispute Resolution", path: "/dispute-resolution" },
 ];
+
+export const API_LINK: string = "https://ace-admin-eight.vercel.app"
