@@ -1,3 +1,4 @@
+import { API_LINK } from "@/constants/links";
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 
@@ -43,7 +44,7 @@ const usePosts = (): UsePosts => {
         setError(null);
         try {
             const response: AxiosResponse<PostResponse> = await axios.get(
-                `/api/posts?page=${page}&limit=${limit}&skip=${skip}`
+                `${API_LINK}/api/posts?page=${page}&limit=${limit}&skip=${skip}`
             );
             if (response.data.success) {
                 setPosts(response.data.data);
