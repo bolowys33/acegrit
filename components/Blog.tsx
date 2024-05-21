@@ -18,11 +18,14 @@ const Blog = () => {
                     <section className="space-y-16 mb-10">
                         <article>
                             <div className="flex">
-                                <div className="py-0 pr-4 border-r-2 h-14 border-navy tracking-[2px] hidden md:block">
+                                <div className="py-0 pr-4 border-r-2 h-18 border-navy tracking-[2px] hidden md:block">
+                                    <div className="flex flex-col items-center">
                                     <p className="font-semibold">APR</p>
-                                    <p className="text-[27px] font-extrabold leading-5 mt-1 ">
+                                    <p className="text-[27px] font-extrabold leading-5 my-1 ">
                                         29
                                     </p>
+                                    <p className="font-semibold">2024</p>
+                                    </div>
                                 </div>
                                 <div className="md:pl-4">
                                     <Link
