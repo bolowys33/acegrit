@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 
 const BlogContent = ({ params }: { params: { url: string } }) => {
-    const {} = params
+    const { url } = params;
 
     return (
         <div>
