@@ -22,4 +22,4 @@ export const practiceAreas: NavLink[] = [
     { name: "Dispute Resolution", path: "/dispute-resolution" },
 ];
 
-export const API_LINK: string = "http://localhost:3001"
+export const API_LINK: string = "https://ace-admin-eight.vercel.app"
