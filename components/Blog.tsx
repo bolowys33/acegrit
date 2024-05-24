@@ -18,17 +18,6 @@ const Blog = () => {
         return <div>No posts found.</div>;
     }
 
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        const options: Intl.DateTimeFormatOptions = {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-        };
-        const formattedDate = date.toLocaleDateString("en-US", options);
-        return formattedDate.replace(",", "").split(" ");
-    };
-
     return (
         <Container maxWidth="xl">
             <div className="my-8 md:mx-auto md:w-[85%] flex flex-col">
