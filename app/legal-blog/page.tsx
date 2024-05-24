@@ -23,7 +23,7 @@ const Blog = () => {
     return (
         <div className="">
             <PageBanner title="Legal Blog" classes="blog-image" />
-            <Container maxWidth="xl">
+            <Container maxWidth="lg">
                 <div className="md:px-5">
                     <SectionTitle section="legal blog" />
                     <h3 className="text-[29px] md:text-[34px] text-start font-extrabold tracking-[1.5px]">
