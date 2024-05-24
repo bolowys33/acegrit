@@ -50,7 +50,7 @@ const BlogSection = ({ posts }: { posts: Post[] }) => {
                         />
                         <Link
                             href={`/legal-blog/${post.post_url}`}
-                            className="transition duration-300 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
+                            className="transition rounded-sm duration-500 ease-in-out bg-navy hover:bg-transparent hover:text-navy hover:border-navy border text-white py-2 px-4 font-semibold uppercase">
                             read more
                         </Link>
                     </article>
