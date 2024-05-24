@@ -1,5 +1,6 @@
 "use client";
 
+import CommentForm from "@/components/CommentForm";
 import useSinglePost from "@/hooks/useSinglePost";
 import { Container } from "@mui/material";
 
@@ -19,13 +20,18 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
             <Container
                 maxWidth="lg"
                 className="w-full flex flex-col-reverse md:flex-row gap-5 lg:gap-10 font-poppins mb-6 text-justify font-medium text-zinc-600">
-                <div
-                    className="flex-[2] lg:flex-[3]"
-                    dangerouslySetInnerHTML={{
-                        __html: post?.content ?? "",
-                    }}
-                />
-                <div className="flex-[1]">jhdsjkbdshjxokdp[kfjodjcjxbcjbuxc</div>
+                <div>
+                    <div
+                        className="flex-[2] lg:flex-[3]"
+                        dangerouslySetInnerHTML={{
+                            __html: post?.content ?? "",
+                        }}
+                    />
+                    <CommentForm />
+                </div>
+                <div className="flex-[1]">
+                    jhdsjkbdshjxokdp[kfjodjcjxbcjbuxc
+                </div>
             </Container>
         </div>
     );
