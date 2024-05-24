@@ -11,7 +11,7 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
         <div>
             <div className={`bg-cover bg-center text-center mb-10 blog-image`}>
                 <div className="bg-black bg-opacity-60 py-[100px] md:py-[180px]">
-                    <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6 leading-10">
+                    <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6 leading-none">
                         {post?.title}
                     </h1>
                 </div>
