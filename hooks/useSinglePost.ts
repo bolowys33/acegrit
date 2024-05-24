@@ -1,3 +1,4 @@
+import { API_LINK } from "@/constants/links";
 import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 
@@ -34,7 +35,7 @@ const useSinglePost = (url: string) => {
 
         try {
             const response: AxiosResponse<PostResponse> = await axios.get(
-                `/api/posts/${url}`
+                `${API_LINK}/api/posts/${url}`
             );
             if (response.data.success) {
                 setPost(response.data.data);
