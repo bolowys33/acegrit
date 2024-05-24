@@ -1,10 +1,11 @@
+"use client"
+
 import BlogSection from "@/components/BlogSection";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import Social from "@/components/Social";
 import usePosts from "@/hooks/usePosts";
 import { Container } from "@mui/material";
-import Link from "next/link";
 
 const Blog = () => {
     const { posts, isFetching, error } = usePosts();
