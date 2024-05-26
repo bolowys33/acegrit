@@ -1,6 +1,7 @@
 "use client";
 
 import CommentForm from "@/components/CommentForm";
+import Comments from "@/components/Comments";
 import useSinglePost from "@/hooks/useSinglePost";
 import { Container } from "@mui/material";
 
@@ -27,6 +28,7 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                             __html: post?.content ?? "",
                         }}
                     />
+                    <Comments />
                     <CommentForm />
                 </div>
                 <div className="flex-[1]">
