@@ -28,7 +28,7 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                             __html: post?.content ?? "",
                         }}
                     />
-                    <Comments />
+                    <Comments comments={post?.comments} />
                     <CommentForm />
                 </div>
                 <div className="flex-[1]">
