@@ -4,7 +4,9 @@ import Button from "./Button";
 const CommentForm = () => {
     return (
         <form action="" className="w-4/5">
-            <h3 className="text-navy text-3xl font-extrabold mt-10 mb-8">Leave a comment</h3>
+            <h3 className="text-navy text-3xl font-extrabold mt-10 mb-8">
+                Leave a comment
+            </h3>
             <TextField
                 variant="outlined"
                 margin="normal"
