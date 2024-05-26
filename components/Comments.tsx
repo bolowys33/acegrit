@@ -1,7 +1,7 @@
 const Comments = () => {
     return ( 
-        <div>
-            <h3 className="text-navy text-2xl font-extrabold mt-10 mb-8">
+        <div className="border-y border-gray my-12 py-5 ">
+            <h3 className="text-navy text-2xl font-extrabold">
                 2 Comments
             </h3>
         </div>
