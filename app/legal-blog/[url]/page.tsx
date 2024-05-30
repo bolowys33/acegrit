@@ -1,6 +1,7 @@
 "use client";
 
 import CommentForm from "@/components/CommentForm";
+import Comments from "@/components/Comments";
 import useSinglePost from "@/hooks/useSinglePost";
 import { Container } from "@mui/material";
 
@@ -27,10 +28,15 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                             __html: post?.content ?? "",
                         }}
                     />
-                    <CommentForm />
+                    <Comments comments={post?.comments} />
+                    <CommentForm id={post?._id as string} />
                 </div>
                 <div className="flex-[1]">
-                    jhdsjkbdshjxokdp[kfjodjcjxbcjbuxc
+                    <p className="text-navy font-bold text-lg">Author</p>
+                    <span className="font-bold">
+                        Babajide Bolodeoku
+                        {post?.author.firstname} {post?.author.lastname}
+                    </span>
                 </div>
             </Container>
         </div>
