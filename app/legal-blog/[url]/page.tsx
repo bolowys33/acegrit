@@ -29,7 +29,7 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                         }}
                     />
                     <Comments comments={post?.comments} />
-                    <CommentForm id={post?._id} />
+                    <CommentForm id={post?._id as string} />
                 </div>
                 <div className="flex-[1]">
                     <p className="text-navy font-bold text-lg">Author</p>

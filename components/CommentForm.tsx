@@ -1,6 +1,7 @@
 import { TextField, TextareaAutosize } from "@mui/material";
 import Button from "./Button";
 import { ChangeEvent, useState } from "react";
+import axios from "axios";
 
 const CommentForm = ({id}: {id: string}) => {
     const [error, setError] = useState("");
@@ -29,15 +30,7 @@ const CommentForm = ({id}: {id: string}) => {
         formData.append("postId", id);
 
         try {
-            if (typeof window === "undefined") {
-                return;
-            }
-
-            const token = localStorage.getItem("token");
-            if (!token) {
-                throw new Error("Token not found");
-            }
-
+            
             const response = await axios.post("/api/posts", formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
