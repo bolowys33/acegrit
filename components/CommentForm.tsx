@@ -31,17 +31,14 @@ const CommentForm = ({id}: {id: string}) => {
 
         try {
             
-            const response = await axios.post("/api/posts", formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await axios.post("/api/comments", formData);
 
             if (response.status === 201) {
                 setSuccess(true);
                 setInputData({
-                    title: "",
-                    content: "",
+                    name: "",
+                    body: "",
+                    email: ""
                 });
                 setTimeout(() => setSuccess(false), 10000);
             } else {
@@ -50,7 +47,7 @@ const CommentForm = ({id}: {id: string}) => {
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setError(
-                    error.response?.data.message || "Error creating post, try again"
+                    error.response?.data.message || "Error adding comment, try again"
                 );
             } else {
                 setError("An unknown error occurred");
@@ -63,7 +60,7 @@ const CommentForm = ({id}: {id: string}) => {
 
 
     return (
-        <form action="" className="w-4/5">
+        <form onSubmit={handleSubmit} className="w-4/5">
             <h3 className="text-navy text-2xl font-extrabold mt-10 mb-8">
                 Leave a comment
             </h3>
@@ -102,7 +99,7 @@ const CommentForm = ({id}: {id: string}) => {
                 required
                 value={inputData.body}
                 name="body"
-                onChange={handleChange}
+                onChange={e => setInputData({...inputData, body: e.target.value})}
                 id="outlined-basic"
                 placeholder="Your message *"
                 className="w-full p-3 outline-blue-600 mb-6 border border-zinc-300 rounded hover:border-black placeholder:text-zinc-500"
