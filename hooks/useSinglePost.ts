@@ -13,6 +13,10 @@ interface Post {
     _id: string;
     title: string;
     content: string;
+    author: {
+        firstname: string;
+        lastname: string;
+    };
     post_url: string;
     date_created: string;
     comments: Comment[];

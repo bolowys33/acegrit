@@ -32,7 +32,9 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                     <CommentForm />
                 </div>
                 <div className="flex-[1]">
-                    jhdsjkbdshjxokdp[kfjodjcjxbcjbuxc
+                    <span>
+                        {post?.author.firstname} {post?.author.lastname}
+                    </span>
                 </div>
             </Container>
         </div>
