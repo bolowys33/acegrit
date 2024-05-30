@@ -32,7 +32,9 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                     <CommentForm />
                 </div>
                 <div className="flex-[1]">
-                    <span>
+                    <p className="text-navy font-bold text-lg">Author</p>
+                    <span className="font-bold">
+                        Babajide Bolodeoku
                         {post?.author.firstname} {post?.author.lastname}
                     </span>
                 </div>
