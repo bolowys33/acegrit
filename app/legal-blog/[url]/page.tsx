@@ -5,19 +5,32 @@ import Comments from "@/components/Comments";
 import useSinglePost from "@/hooks/useSinglePost";
 import { formatTime } from "@/utils/formatDate";
 import { Container } from "@mui/material";
+import { PropagateLoader } from "react-spinners";
 
 const BlogContent = ({ params }: { params: { url: string } }) => {
     const { url } = params;
     const { error, isFetching, post } = useSinglePost(url);
 
+    if (isFetching) {
+        return <div className="grid place-items-center h-[515px] text-navy">
+            <PropagateLoader color="#000080" />
+        </div>
+    }
+
+    if (!isFetching && error) {
+        return <div className="grid place-items-center h-[515px] text-[red]">
+            {error}
+        </div>
+    }
+
     return (
         <div>
             <div className={`bg-cover bg-center text-center mb-10 blog-image`}>
                 <div className="bg-black bg-opacity-60 py-[100px] md:py-[180px] space-y-8">
-                    <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6 leading-normal">
+                    <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6 leading-none">
                         {post?.title}
                     </h1>
-                    <div className="space-x-6 text-white md:text-xl font-medium">
+                    <div className="space-x-6 text-white text-sm md:text-lg font-medium">
                         <span>{formatTime(post?.date_created as string)}</span>
                         <span>*</span>
                         <span>
