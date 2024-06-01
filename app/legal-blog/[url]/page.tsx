@@ -5,10 +5,23 @@ import Comments from "@/components/Comments";
 import useSinglePost from "@/hooks/useSinglePost";
 import { formatTime } from "@/utils/formatDate";
 import { Container } from "@mui/material";
+import { PropagateLoader } from "react-spinners";
 
 const BlogContent = ({ params }: { params: { url: string } }) => {
     const { url } = params;
     const { error, isFetching, post } = useSinglePost(url);
+
+    if (isFetching) {
+        return <div className="grid place-items-center h-[515px] text-navy">
+            <PropagateLoader color="#000080" />
+        </div>
+    }
+
+    if (!isFetching && error) {
+        return <div className="grid place-items-center h-[515px] text-[red]">
+            {error}
+        </div>
+    }
 
     return (
         <div>
