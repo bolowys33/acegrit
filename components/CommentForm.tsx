@@ -1,6 +1,6 @@
 import { Alert, TextField, TextareaAutosize } from "@mui/material";
 import Button from "./Button";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
 import { API_LINK } from "@/constants/links";
 
@@ -13,6 +13,19 @@ const CommentForm = ({ id }: { id: string }) => {
         body: "",
         email: "",
     });
+    const [saveInfo, setSaveInfo] = useState(false);
+
+    useEffect(() => {
+        const savedEmail = localStorage.getItem("savedEmail");
+        const savedName = localStorage.getItem("savedName");
+        if (savedEmail && savedName) {
+            setInputData((prevData) => ({
+                ...prevData,
+                email: savedEmail,
+                name: savedName,
+            }));
+        }
+    }, []);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInputData({ ...inputData, [e.target.name]: e.target.value });
@@ -43,6 +56,10 @@ const CommentForm = ({ id }: { id: string }) => {
                     body: "",
                     email: "",
                 });
+                if (saveInfo) {
+                    localStorage.setItem("savedEmail", inputData.email);
+                    localStorage.setItem("savedName", inputData.name);
+                }
                 setTimeout(() => setSuccess(false), 10000);
             } else {
                 setError(response.data.message);
@@ -104,6 +121,16 @@ const CommentForm = ({ id }: { id: string }) => {
                 name="name"
                 onChange={handleChange}
             />
+            <div className="flex items-center mb-4">
+                <input
+                    type="checkbox"
+                    id="saveInfo"
+                    checked={saveInfo}
+                    onChange={(e) => setSaveInfo(e.target.checked)}
+                    className="mr-2"
+                />
+                <label htmlFor="saveInfo">Save my info for next time</label>
+            </div>
             <TextareaAutosize
                 minRows={7}
                 maxRows={9}
@@ -114,13 +141,13 @@ const CommentForm = ({ id }: { id: string }) => {
                     setInputData({ ...inputData, body: e.target.value })
                 }
                 id="outlined-basic"
-                placeholder="Your message *"
+                placeholder="Your comment *"
                 className="w-full p-3 outline-blue-600 mb-6 border border-zinc-300 rounded hover:border-black placeholder:text-zinc-500"
             />
             <Button
                 type="submit"
-                title="submit now"
-                classes="w-1/3 self-center  h-14 rounded"
+                title={isloading ? "loading..." : "submit now"}
+                classes="w-1/3 self-center h-14 rounded"
             />
         </form>
     );
