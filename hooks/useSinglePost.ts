@@ -9,6 +9,11 @@ export interface Comment {
     date_created: string;
 }
 
+interface PrePost {
+    title: string;
+    url: string;
+}
+
 interface Post {
     _id: string;
     title: string;
@@ -20,6 +25,8 @@ interface Post {
     post_url: string;
     date_created: string;
     comments: Comment[];
+    previousPost: PrePost;
+    nextPost: PrePost;
 }
 
 interface PostResponse {
