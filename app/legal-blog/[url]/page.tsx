@@ -27,10 +27,10 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
         <div>
             <div className={`bg-cover bg-center text-center mb-10 blog-image`}>
                 <div className="bg-black bg-opacity-60 py-[100px] md:py-[180px] space-y-8">
-                    <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6 leading-normal">
+                    <h1 className="text-white font-main font-bold text-2xl md:text-[50px] mx-6 leading-none">
                         {post?.title}
                     </h1>
-                    <div className="space-x-6 text-white md:text-xl font-medium">
+                    <div className="space-x-6 text-white text-sm md:text-lg font-medium">
                         <span>{formatTime(post?.date_created as string)}</span>
                         <span>*</span>
                         <span>
