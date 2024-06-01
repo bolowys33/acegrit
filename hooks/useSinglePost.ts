@@ -25,8 +25,8 @@ interface Post {
     post_url: string;
     date_created: string;
     comments: Comment[];
-    previousPost: PrePost;
-    nextPost: PrePost;
+    previousPost: PrePost | null;
+    nextPost: PrePost | null;
 }
 
 interface PostResponse {
