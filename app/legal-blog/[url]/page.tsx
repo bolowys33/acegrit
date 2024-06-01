@@ -3,6 +3,7 @@
 import CommentForm from "@/components/CommentForm";
 import Comments from "@/components/Comments";
 import useSinglePost from "@/hooks/useSinglePost";
+import { formatTime } from "@/utils/formatDate";
 import { Container } from "@mui/material";
 
 const BlogContent = ({ params }: { params: { url: string } }) => {
@@ -17,7 +18,7 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                         {post?.title}
                     </h1>
                     <div className="space-x-6 text-white md:text-xl font-medium">
-                        <span>23, Apr 2024</span>
+                        <span>{formatTime(post?.date_created as string)}</span>
                         <span>*</span>
                         <span>
                             {post && post.comments && post.comments.length === 0
