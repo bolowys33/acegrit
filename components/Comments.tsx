@@ -1,3 +1,5 @@
+import { formatTime } from "@/utils/formatDate";
+
 const Comments = ({
     comments,
 }: {
@@ -17,15 +19,15 @@ const Comments = ({
                 comments?.map((comment) => (
                     <div>
                         <article className="flex gap-5 ml-5 py-6 border-b border-gray ">
-                            <div className="grid place-items-center h-12 w-12 bg-slate-400 rounded-full text-xl">
-                                J
+                            <div className="grid place-items-center h-12 w-12 bg-slate-400 rounded-full text-xl uppercase">
+                                {comment.author[0]}
                             </div>
                             <div className="flex flex-col gap">
                                 <span className="font-bold text-lg">
                                     {comment.author}
                                 </span>
                                 <span className="text-sm text-slate-400">
-                                    February 12, 2024 at 7:41 pm
+                                    {formatTime(comment.date_created)}
                                 </span>
                                 <span className="text-lg mt-6">
                                     {comment.body}
