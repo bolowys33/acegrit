@@ -54,6 +54,7 @@ const BlogContent = ({ params }: { params: { url: string } }) => {
                 className="w-full flex flex-col-reverse md:flex-row gap-5 lg:gap-10 font-poppins mb-6 text-justify font-medium text-zinc-600">
                 <div className="flex-[3] lg:flex-[4]">
                     <div
+                        className="lg:text-lg"
                         dangerouslySetInnerHTML={{
                             __html: post?.content ?? "",
                         }}
