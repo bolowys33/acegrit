@@ -13,7 +13,7 @@ interface PrePost {
 
 const PrePost = ({ previousPost, nextPost }: PrePost) => {
     return (
-        <div className="flex justify-between font-extrabold mt-6">
+        <div className="flex justify-between font-extrabold mt-12">
             {previousPost && (
                 <div className="flex-1">
                     <p className="tracking-[1px] mb-2 text-[13px] uppercase font-extrabold">
