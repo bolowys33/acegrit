@@ -6,9 +6,26 @@ import { Container } from "@mui/material";
 import Image from "next/image";
 import Social from "@/components/Social";
 import useAttorneys from "@/hooks/useAttorneys";
+import { PropagateLoader } from "react-spinners";
 
 const Attorneys = () => {
     const { attorneys, isFetching, error } = useAttorneys();
+
+    if (isFetching) {
+        return (
+            <div className="grid place-items-center h-[515px] text-navy">
+                <PropagateLoader color="#000080" />
+            </div>
+        );
+    }
+
+    if (!isFetching && error) {
+        return (
+            <div className="grid place-items-center h-[515px] text-[red]">
+                {error}
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -20,9 +37,9 @@ const Attorneys = () => {
                         Meet our team
                     </h3>
                 </div>
-                <div className="flex flex-col md:flex-row md:gap-6 lg:gap-10">
+                <div className="grid grid-cols-12 md:gap-6 lg:gap-10">
                     {attorneys?.map((attorney) => (
-                        <div className="text-center mb-6">
+                        <div className="text-center mb-6 col-span-12 md:col-span-6">
                             <Image
                                 src={attorney.image_url}
                                 width={700}
