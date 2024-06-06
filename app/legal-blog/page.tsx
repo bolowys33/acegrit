@@ -4,20 +4,27 @@ import BlogSection from "@/components/BlogSection";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import Social from "@/components/Social";
-import usePosts from "@/hooks/usePosts";
+import usePosts, { Post } from "@/hooks/usePosts";
 import { Container } from "@mui/material";
+import { PropagateLoader } from "react-spinners";
 
 const Blog = () => {
     const { posts, isFetching, error } = usePosts();
 
-    if (isFetching) return null; // You can replace this with a loading spinner
-
-    if (error) {
-        return <div>An error occurred: {error}</div>;
+    if (isFetching) {
+        return (
+            <div className="grid place-items-center h-[515px] text-navy">
+                <PropagateLoader color="#000080" />
+            </div>
+        );
     }
 
-    if (!posts || posts.length === 0) {
-        return <div>No posts found.</div>;
+    if (!isFetching && error) {
+        return (
+            <div className="grid place-items-center h-[515px] text-[red]">
+                {error}
+            </div> 
+        );
     }
 
     return (
@@ -35,7 +42,7 @@ const Blog = () => {
                         events within the legal space in Africa.
                     </p>
                     <SectionTitle section="posts" classes="mb-6" />
-                    <BlogSection posts={posts} />
+                    {<BlogSection posts={posts as Post[]} />}
                 </div>
             </Container>
             <Social classes="bg-zinc-200" />
