@@ -42,10 +42,10 @@ const Attorneys = () => {
                         <div className="text-center mb-6 col-span-12 md:col-span-6">
                             <Image
                                 src={attorney.image_url}
-                                width={700}
-                                height={700}
+                                width={300}
+                                height={300}
                                 alt={attorney.name}
-                                className="w-[700px] mx-auto mb-5"
+                                className="w-[350px] mx-auto mb-5"
                             />
                             <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
                                 {attorney.name}
