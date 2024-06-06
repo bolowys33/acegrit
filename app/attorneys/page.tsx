@@ -1,8 +1,9 @@
+"use client"
+
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import { Container } from "@mui/material";
 import Image from "next/image";
-import litigation from "@/public/assets/litigation.jpg";
 import Social from "@/components/Social";
 import useAttorneys from "@/hooks/useAttorneys";
 
@@ -24,6 +25,8 @@ const Attorneys = () => {
                         <div className="text-center mb-6">
                             <Image
                                 src={attorney.image_url}
+                                width={700}
+                                height={700}
                                 alt={attorney.name}
                                 className="w-[700px] mx-auto mb-5"
                             />
