@@ -31,7 +31,7 @@ interface UsePosts {
     pagination: PostResponse["pagination"] | null;
 }
 
-const usePosts = (page = 1, limit = 8, skip = 0): UsePosts => {
+const usePosts = (): UsePosts => {
     const [posts, setPosts] = useState<Post[] | null>(null);
     const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -60,8 +60,8 @@ const usePosts = (page = 1, limit = 8, skip = 0): UsePosts => {
     };
 
     useEffect(() => {
-        getPosts(page, limit, skip);
-    }, [page, limit, skip]);
+        getPosts();
+    }, []);
 
     return { posts, isFetching, error, getPosts, pagination };
 };
