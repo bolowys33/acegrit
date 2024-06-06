@@ -90,3 +90,14 @@ body {
 .mission-image {
     background-image: url("../public/assets/mission.jpg");
 }
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 2.5s ease-out, transform 2s ease-out;
+}
+
+.swiper-slide-active .fade-up {
+    opacity: 1;
+    transform: translateY(0);
+}
