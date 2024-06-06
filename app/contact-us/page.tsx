@@ -94,7 +94,11 @@ const Contact = () => {
                                 placeholder="Your message *"
                                 className="w-full p-3 outline-blue-600 mb-6 border border-zinc-300 rounded hover:border-black placeholder:text-zinc-500"
                             />
-                            <Button type="submit" title="submit now" classes="w-full h-14 rounded" />
+                            <Button
+                                type="submit"
+                                title="submit now"
+                                classes="w-full h-14 rounded"
+                            />
                         </form>
                     </Box>
                 </Container>
