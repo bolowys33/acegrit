@@ -23,7 +23,7 @@ const Attorneys = () => {
         return (
             <div className="grid place-items-center h-[515px] text-[red]">
                 {error}
-            </div>
+            </div> 
         );
     }
 
