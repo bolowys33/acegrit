@@ -1,22 +1,15 @@
-"use client";
+"use client"
 
 import BlogSection from "@/components/BlogSection";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import Social from "@/components/Social";
 import usePosts, { Post } from "@/hooks/usePosts";
-import { Container, Pagination } from "@mui/material";
+import { Container } from "@mui/material";
 import { PropagateLoader } from "react-spinners";
-import { useState } from "react";
 
 const Blog = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const { posts, isFetching, error, getPosts, pagination } = usePosts(currentPage);
-
-    const handlePageChange = (event: any, newPage: number) => {
-        setCurrentPage(newPage);
-        getPosts(newPage);
-    };
+    const { posts, isFetching, error, } = usePosts();
 
     if (isFetching) {
         return (
@@ -30,7 +23,7 @@ const Blog = () => {
         return (
             <div className="grid place-items-center h-[515px] text-[red]">
                 {error}
-            </div>
+            </div> 
         );
     }
 
@@ -50,16 +43,6 @@ const Blog = () => {
                     </p>
                     <SectionTitle section="posts" classes="mb-6" />
                     {<BlogSection posts={posts as Post[]} />}
-                    {pagination && (
-                        <Pagination
-                            count={pagination.totalPages}
-                            page={currentPage}
-                            onChange={handlePageChange}
-                            color="primary"
-                            classes={{ root: "my-4" }}
-                            className="flex justify-center"
-                        />
-                    )}
                 </div>
             </Container>
             <Social classes="bg-zinc-200" />
