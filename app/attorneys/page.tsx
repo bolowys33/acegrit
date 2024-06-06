@@ -20,18 +20,18 @@ const Attorneys = () => {
                     </h3>
                 </div>
                 <div className="flex flex-col md:flex-row md:gap-6 lg:gap-10">
-                    {attorneys?.map(attorney => (
+                    {attorneys?.map((attorney) => (
                         <div className="text-center mb-6">
-                        <Image
-                            src={litigation}
-                            alt=""
-                            className="w-[700px] mx-auto mb-5"
-                        />
-                        <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
-                            Babajide Bolodeoku
-                        </h3>
-                        <SectionTitle section="managing partner" />
-                    </div>
+                            <Image
+                                src={attorney.image_url}
+                                alt={attorney.name}
+                                className="w-[700px] mx-auto mb-5"
+                            />
+                            <h3 className="text-[26px] md:text-[30px] font-extrabold leading-3">
+                                {attorney.name}
+                            </h3>
+                            <SectionTitle section={attorney.position} />
+                        </div>
                     ))}
                 </div>
             </Container>
