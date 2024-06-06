@@ -29,7 +29,7 @@ const Comments = ({
                                 <span className="text-sm text-slate-400">
                                     {formatTime(comment.date_created)}
                                 </span>
-                                <span className="text-lg mt-6">
+                                <span className="lg:text-lg mt-6">
                                     {comment.body}
                                 </span>
                             </div>

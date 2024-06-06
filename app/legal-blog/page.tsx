@@ -1,23 +1,37 @@
-"use client"
+"use client";
 
 import BlogSection from "@/components/BlogSection";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import Social from "@/components/Social";
-import usePosts from "@/hooks/usePosts";
-import { Container } from "@mui/material";
+import usePosts, { Post } from "@/hooks/usePosts";
+import { Container, Pagination } from "@mui/material";
+import { PropagateLoader } from "react-spinners";
+import { useState } from "react";
 
 const Blog = () => {
-    const { posts, isFetching, error } = usePosts();
+    const [currentPage, setCurrentPage] = useState(1);
+    const { posts, isFetching, error, getPosts, pagination } = usePosts(currentPage);
 
-    if (isFetching) return null; // You can replace this with a loading spinner
+    const handlePageChange = (event: any, newPage: number) => {
+        setCurrentPage(newPage);
+        getPosts(newPage);
+    };
 
-    if (error) {
-        return <div>An error occurred: {error}</div>;
+    if (isFetching) {
+        return (
+            <div className="grid place-items-center h-[515px] text-navy">
+                <PropagateLoader color="#000080" />
+            </div>
+        );
     }
 
-    if (!posts || posts.length === 0) {
-        return <div>No posts found.</div>;
+    if (!isFetching && error) {
+        return (
+            <div className="grid place-items-center h-[515px] text-[red]">
+                {error}
+            </div>
+        );
     }
 
     return (
@@ -35,7 +49,17 @@ const Blog = () => {
                         events within the legal space in Africa.
                     </p>
                     <SectionTitle section="posts" classes="mb-6" />
-                    <BlogSection posts={posts} />
+                    {<BlogSection posts={posts as Post[]} />}
+                    {pagination && (
+                        <Pagination
+                            count={pagination.totalPages}
+                            page={currentPage}
+                            onChange={handlePageChange}
+                            color="primary"
+                            classes={{ root: "my-4" }}
+                            className="flex justify-center"
+                        />
+                    )}
                 </div>
             </Container>
             <Social classes="bg-zinc-200" />

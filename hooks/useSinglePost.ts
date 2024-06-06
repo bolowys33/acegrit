@@ -11,7 +11,7 @@ export interface Comment {
 
 interface PrePost {
     title: string;
-    url: string;
+    post_url: string;
 }
 
 interface Post {
