@@ -46,10 +46,10 @@ const Contact = () => {
             <div className="bg-zinc-200 py-14">
                 <Container maxWidth="sm">
                     <Box>
-                        <h3 className="text-[40px] text-center font-extrabold mb-1">
+                        <h3 className="text-3xl md:text-4xl lg:text-[40px] text-center font-extrabold mb-1">
                             Leave us a message
                         </h3>
-                        <p className="mb-6 text-center text-zinc-600 text-xl font-poppings tracking-wide">
+                        <p className="mb-6 text-center text-zinc-600 md:text-sm lg:text-xl font-poppings tracking-wide">
                             and we will get back to you
                         </p>
                         <form action="">

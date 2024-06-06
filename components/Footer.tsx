@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="bg-[#060633]">
             <div className=" py-8 px-8 md:pl-16 md:pr-32 md:py-12 text-white">
                 <div className="flex flex-col md:flex-row md:items-center ">
-                    <div>
+                    <div className="hidden lg:block">
                         <Image src={logo} alt="brand logo" width={250} />
                     </div>
                     <div className="flex flex-col md:flex-row space-y-7 md:space-y-0 md:space-x-8 md:justify-between md:pl-40 lg:mr-20">
