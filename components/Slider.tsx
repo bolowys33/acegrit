@@ -75,7 +75,7 @@ const Slider = () => {
                             <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
                                 Stay informed and empowered with our latest
                                 articles, insights, and legal tips. Whether
-                                you're a business owner, individual, or legal
+                                you&apos;re a business owner, individual, or legal
                                 professional, our blog covers a wide range of
                                 topics to help you navigate the complexities of
                                 the law. Explore our blog to learn about recent
@@ -105,8 +105,8 @@ const Slider = () => {
                                 about a specific legal matter or need
                                 representation in court, we are committed to
                                 providing personalized attention and tailored
-                                solutions to meet your needs. Don't hesitate to
-                                reach out - we're here to help.
+                                solutions to meet your needs. Don&apos;t hesitate to
+                                reach out - we are here to help.
                             </p>
                             <div className="fade-up">
                                 <Link
