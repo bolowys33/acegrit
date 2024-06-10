@@ -25,9 +25,11 @@ const Slider = () => {
                 modules={[Pagination, Navigation, Autoplay]}>
                 <SwiperSlide>
                     <div>
-                        <Slide title="Ace & Grit LP" classes="litigation-image">
+                        <Slide
+                            title="Ace &amp; Grit LP"
+                            classes="litigation-image">
                             <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
-                                Welcome to Ace & Grit Legal Practictioners,
+                                Welcome to Ace &amp; Grit Legal Practictioners,
                                 where we are dedicated to providing exceptional
                                 legal services to our clients. Our team of
                                 experienced attorneys is committed to
@@ -49,7 +51,7 @@ const Slider = () => {
                     <div>
                         <Slide title="Expertise" classes="litigation-image">
                             <p className="mb-10 mx-4 md:mx-24 text-sm md:text-xl">
-                                At Ace & Grit LP, whether you are facing a
+                                At Ace &amp; Grit LP, whether you are facing a
                                 complex business dispute, navigating the nuances
                                 of estate planning, or seeking guidance on a
                                 personal legal matter, we are here to support
