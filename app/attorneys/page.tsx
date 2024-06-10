@@ -39,7 +39,7 @@ const Attorneys = () => {
                 </div>
                 <div className="grid grid-cols-12 md:gap-6 lg:gap-10">
                     {attorneys?.map((attorney) => (
-                        <div className="text-center mb-6 col-span-12 md:col-span-6">
+                        <div key={attorney._id} className="text-center mb-6 col-span-12 md:col-span-6">
                             <Image
                                 src={attorney.image_url}
                                 width={300}

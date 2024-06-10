@@ -17,7 +17,7 @@ const Comments = ({
                 <div>No comments added</div>
             ) : (
                 comments?.map((comment) => (
-                    <div>
+                    <div key={comment._id}>
                         <article className="flex gap-5 ml-5 py-6 border-b border-gray ">
                             <div className="grid place-items-center h-12 w-12 bg-slate-400 rounded-full text-xl uppercase">
                                 {comment.author[0]}
